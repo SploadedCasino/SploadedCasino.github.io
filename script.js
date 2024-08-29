@@ -6,6 +6,7 @@ let gameStarted = false;
 
 function updateBalance() {
     document.getElementById('playerBalance').innerText = `Balance: $${playerBalance}`;
+    document.getElementById('currentBet').innerText = `Current Bet: $${playerBet}`;
 }
 
 function placeBet(amount) {
@@ -25,10 +26,11 @@ function startGame() {
         gameStarted = true;
         playerHand = [drawCard(), drawCard()];
         dealerHand = [drawCard(), drawCard()];
-        renderHands(false);
+        renderHands();
         checkForBlackjack();
         document.getElementById('hitButton').disabled = false;
         document.getElementById('standButton').disabled = false;
+        document.getElementById('startButton').disabled = true;
     }
 }
 
@@ -38,30 +40,28 @@ function drawCard() {
     return { value: cardValue, type: cardType };
 }
 
-function renderHands(showDealerCard) {
+function renderHands(revealDealerCard = false) {
     const playerCardsDiv = document.getElementById('playerCards');
     const dealerCardsDiv = document.getElementById('dealerCards');
     playerCardsDiv.innerHTML = '';
     dealerCardsDiv.innerHTML = '';
 
-    // Render dealer's hidden card first (left)
-    const dealerCardDiv = document.createElement('img');
-    dealerCardDiv.src = showDealerCard ? `cards/${dealerHand[1].type}_${getCardName(dealerHand[1].value)}.png` : 'cards/back.png';
-    dealerCardDiv.className = 'card';
-    dealerCardsDiv.appendChild(dealerCardDiv);
-
-    // Render the dealer's visible card (right)
-    const dealerVisibleCardDiv = document.createElement('img');
-    dealerVisibleCardDiv.src = `cards/${dealerHand[0].type}_${getCardName(dealerHand[0].value)}.png`;
-    dealerVisibleCardDiv.className = 'card';
-    dealerCardsDiv.appendChild(dealerVisibleCardDiv);
-
-    // Render player's cards
     playerHand.forEach(card => {
         const cardDiv = document.createElement('img');
         cardDiv.src = `cards/${card.type}_${getCardName(card.value)}.png`;
         cardDiv.className = 'card';
         playerCardsDiv.appendChild(cardDiv);
+    });
+
+    dealerHand.forEach((card, index) => {
+        const cardDiv = document.createElement('img');
+        if (index === 0 && !revealDealerCard) {
+            cardDiv.src = `cards/back.png`;
+        } else {
+            cardDiv.src = `cards/${card.type}_${getCardName(card.value)}.png`;
+        }
+        cardDiv.className = 'card';
+        dealerCardsDiv.appendChild(cardDiv);
     });
 }
 
@@ -74,11 +74,10 @@ function getCardName(value) {
 function hit() {
     if (gameStarted) {
         playerHand.push(drawCard());
-        renderHands(false);
+        renderHands();
         const playerTotal = calculateTotal(playerHand);
         if (playerTotal > 21) {
-            document.getElementById('message').innerText = "You bust! Dealer wins.";
-            renderHands(true);
+            document.getElementById('message').innerText = "You bust,💦 Dealer wins.🤡";
             endGame();
         }
     }
@@ -87,19 +86,18 @@ function hit() {
 function stand() {
     if (gameStarted) {
         const playerTotal = calculateTotal(playerHand);
-        renderHands(true);
         while (calculateTotal(dealerHand) < 17) {
             dealerHand.push(drawCard());
         }
-        renderHands(true);
+        renderHands();
         const dealerTotal = calculateTotal(dealerHand);
         if (dealerTotal > 21 || playerTotal > dealerTotal) {
-            document.getElementById('message').innerText = "You win!";
+            document.getElementById('message').innerText = "You win!🤑🤑🤑";
             playerBalance += playerBet * 2;
         } else if (playerTotal < dealerTotal) {
-            document.getElementById('message').innerText = "Dealer wins.";
+            document.getElementById('message').innerText = "Dealer wins🤡🤡🤡";
         } else {
-            document.getElementById('message').innerText = "It's a tie.";
+            document.getElementById('message').innerText = "It's a tie.🥶🥶🥶";
             playerBalance += playerBet;
         }
         endGame();
@@ -136,18 +134,27 @@ function checkForBlackjack() {
         endGame();
     } else if (dealerTotal === 21) {
         document.getElementById('message').innerText = "Dealer has Blackjack! You lose.";
-        renderHands(true);
         endGame();
     }
 }
 
 function endGame() {
-    playerBet = 0;
-    gameStarted = false;
-    updateBalance();
-    document.getElementById('hitButton').disabled = true;
-    document.getElementById('standButton').disabled = true;
-    document.getElementById('startButton').disabled = true;
+    renderHands(true);
+    setTimeout(() => {
+        setTimeout(() => {
+            playerHand = [];
+            dealerHand = [];
+            document.getElementById('playerCards').innerHTML = '';
+            document.getElementById('dealerCards').innerHTML = '';
+            document.getElementById('message').innerText = '';
+            playerBet = 0;
+            gameStarted = false;
+            updateBalance();
+            document.getElementById('hitButton').disabled = true;
+            document.getElementById('standButton').disabled = true;
+            document.getElementById('startButton').disabled = true;
+        }, 4000);
+    }, 1); 
 }
 
 document.getElementById('bettingArea').addEventListener('click', function() {
