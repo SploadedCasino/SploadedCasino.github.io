@@ -1,1 +1,1 @@
-SploadeddBoi.github.io
+SploadedBoi.github.io
