@@ -80,7 +80,7 @@ button:disabled {
 }
 h3 {
     text-align: center;
-    color: #fff; 
-    font-size: 24px; 
+    color: #fff; /* Adjust color as needed */
+    font-size: 24px; /* Adjust size as needed */
     margin: 10px 0;
 }
