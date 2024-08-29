@@ -9,7 +9,10 @@
 <body>
     <div class="table">
         <h1>Blackjack</h1>
-        <div id="playerBalance">Balance: $1000</div>
+        <div id="balanceContainer">
+            <span id="playerBalance">Balance: $1000</span>
+            <span id="currentBet">Current Bet: $0</span>
+        </div>
         <div id="bettingArea">
             <button onclick="placeBet(1)">Bet $1</button>
             <button onclick="placeBet(5)">Bet $5</button>
@@ -17,15 +20,15 @@
             <button onclick="placeBet(100)">Bet $100</button>
             <button onclick="placeBet(500)">Bet $500</button>
             <button onclick="placeBet(1000)">Bet $1000</button>
-            <button id="startButton" onclick="startGame()">Deal Cards</button>
+            <button id="startButton" onclick="startGame()" disabled>Deal Cards</button>
         </div>
         <div id="gameArea">
             <div id="dealerCards" class="cards"></div>
+            <div id="message"></div>
             <div id="playerCards" class="cards"></div>
         </div>
         <button id="hitButton" onclick="hit()" disabled>Hit</button>
         <button id="standButton" onclick="stand()" disabled>Stand</button>
-        <div id="message"></div>
     </div>
     <script src="script.js"></script>
 </body>
