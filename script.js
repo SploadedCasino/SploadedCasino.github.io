@@ -3,10 +3,10 @@ let playerBet = 0;
 let playerHand = [];
 let dealerHand = [];
 let gameStarted = false;
+let highScore = 0;
 
 function updateBalance() {
     document.getElementById('playerBalance').innerText = `Balance: $${playerBalance}`;
-    document.getElementById('currentBet').innerText = `Current Bet: $${playerBet}`;
 }
 
 function placeBet(amount) {
@@ -94,6 +94,7 @@ function stand() {
         if (dealerTotal > 21 || playerTotal > dealerTotal) {
             document.getElementById('message').innerText = "You win!🤑🤑🤑";
             playerBalance += playerBet * 2;
+            updateHighScore(); // Update high score
         } else if (playerTotal < dealerTotal) {
             document.getElementById('message').innerText = "Dealer wins🤡🤡🤡";
         } else {
@@ -131,6 +132,7 @@ function checkForBlackjack() {
     if (playerTotal === 21) {
         document.getElementById('message').innerText = "Blackjack! You win!";
         playerBalance += playerBet * 2.5;
+        updateHighScore(); // Update high score
         endGame();
     } else if (dealerTotal === 21) {
         document.getElementById('message').innerText = "Dealer has Blackjack! You lose.";
@@ -141,20 +143,25 @@ function checkForBlackjack() {
 function endGame() {
     renderHands(true);
     setTimeout(() => {
-        setTimeout(() => {
-            playerHand = [];
-            dealerHand = [];
-            document.getElementById('playerCards').innerHTML = '';
-            document.getElementById('dealerCards').innerHTML = '';
-            document.getElementById('message').innerText = '';
-            playerBet = 0;
-            gameStarted = false;
-            updateBalance();
-            document.getElementById('hitButton').disabled = true;
-            document.getElementById('standButton').disabled = true;
-            document.getElementById('startButton').disabled = true;
-        }, 4000);
-    }, 1); 
+        playerHand = [];
+        dealerHand = [];
+        document.getElementById('playerCards').innerHTML = '';
+        document.getElementById('dealerCards').innerHTML = '';
+        document.getElementById('message').innerText = '';
+        playerBet = 0; // Reset bet for next round
+        gameStarted = false;
+        updateBalance();
+        document.getElementById('hitButton').disabled = true;
+        document.getElementById('standButton').disabled = true;
+        document.getElementById('startButton').disabled = true;
+    }, 4000);
+}
+
+function updateHighScore() {
+    if (playerBalance > highScore) {
+        highScore = playerBalance;
+        document.getElementById('highScore').innerText = `High Score: $${highScore}`;
+    }
 }
 
 document.getElementById('bettingArea').addEventListener('click', function() {
