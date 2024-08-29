@@ -68,7 +68,7 @@ function renderHands(revealDealerCard = false) {
 function getCardName(value) {
     if (value === 1) return 'a';
     if (value > 10) return '10'; // Treat Jack, Queen, King as 10
-    return value;
+    return value.toString();
 }
 
 function hit() {
@@ -77,7 +77,7 @@ function hit() {
         renderHands();
         const playerTotal = calculateTotal(playerHand);
         if (playerTotal > 21) {
-            document.getElementById('message').innerText = "You bust,💦 Dealer wins.🤡";
+            document.getElementById('message').innerText = "You bust, Dealer wins.";
             endGame();
         }
     }
@@ -89,16 +89,16 @@ function stand() {
         while (calculateTotal(dealerHand) < 17) {
             dealerHand.push(drawCard());
         }
-        renderHands();
+        renderHands(true);
         const dealerTotal = calculateTotal(dealerHand);
         if (dealerTotal > 21 || playerTotal > dealerTotal) {
-            document.getElementById('message').innerText = "You win!🤑🤑🤑";
+            document.getElementById('message').innerText = "You win!";
             playerBalance += playerBet * 2;
             updateHighScore(); // Update high score
         } else if (playerTotal < dealerTotal) {
-            document.getElementById('message').innerText = "Dealer wins🤡🤡🤡";
+            document.getElementById('message').innerText = "Dealer wins";
         } else {
-            document.getElementById('message').innerText = "It's a tie.🥶🥶🥶";
+            document.getElementById('message').innerText = "It's a tie.";
             playerBalance += playerBet;
         }
         endGame();
@@ -167,3 +167,38 @@ function updateHighScore() {
 document.getElementById('bettingArea').addEventListener('click', function() {
     document.getElementById('startButton').disabled = false;
 });
+
+function saveGameState() {
+    const gameState = {
+        playerBalance: playerBalance,
+        playerHand: playerHand,
+        dealerHand: dealerHand,
+        gameStarted: gameStarted,
+        timestamp: Date.now()
+    };
+    localStorage.setItem('blackjackGameState', JSON.stringify(gameState));
+}
+
+function loadGameState() {
+    const savedState = localStorage.getItem('blackjackGameState');
+    if (savedState) {
+        const gameState = JSON.parse(savedState);
+
+        const currentTime = Date.now();
+        if (currentTime - gameState.timestamp <= 30000) {
+            playerBalance = gameState.playerBalance;
+            playerHand = gameState.playerHand;
+            dealerHand = gameState.dealerHand;
+            gameStarted = gameState.gameStarted;
+
+            updateBalance();
+            renderHands(true);
+        }
+    }
+}
+
+window.onload = function() {
+    loadGameState();
+}
+
+setInterval(saveGameState, 60000);
