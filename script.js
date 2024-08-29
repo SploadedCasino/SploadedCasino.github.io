@@ -174,6 +174,7 @@ function saveGameState() {
         playerHand: playerHand,
         dealerHand: dealerHand,
         gameStarted: gameStarted,
+        playerBet: playerBet, // Save the current bet
         timestamp: Date.now()
     };
     localStorage.setItem('blackjackGameState', JSON.stringify(gameState));
@@ -190,15 +191,23 @@ function loadGameState() {
             playerHand = gameState.playerHand;
             dealerHand = gameState.dealerHand;
             gameStarted = gameState.gameStarted;
+            playerBet = gameState.playerBet; // Restore the bet
 
             updateBalance();
             renderHands(true);
+            if (gameStarted) {
+                // Re-enable buttons if a round is in progress
+                document.getElementById('hitButton').disabled = false;
+                document.getElementById('standButton').disabled = false;
+                document.getElementById('startButton').disabled = true;
+            }
         }
     }
 }
 
 window.onload = function() {
     loadGameState();
+    setInterval(saveGameState, 30000); // Start autosaving
 }
 
-setInterval(saveGameState, 60000);
+setInterval(saveGameState, 60000); // Keep saving every minute
