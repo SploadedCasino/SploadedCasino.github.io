@@ -1,1 +1,1 @@
-SploadedBoi.github.io
+Blackjack.github.io
