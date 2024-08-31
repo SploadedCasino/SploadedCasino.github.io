@@ -77,7 +77,7 @@ function hit() {
         renderHands();
         const playerTotal = calculateTotal(playerHand);
         if (playerTotal > 21) {
-            document.getElementById('message').innerText = "You bust, Dealer wins.";
+            document.getElementById('message').innerText = "You bust,💦 Dealer wins.🤡";
             endGame();
         }
     }
@@ -92,13 +92,13 @@ function stand() {
         renderHands(true);
         const dealerTotal = calculateTotal(dealerHand);
         if (dealerTotal > 21 || playerTotal > dealerTotal) {
-            document.getElementById('message').innerText = "You win!";
+            document.getElementById('message').innerText = "You win!🤑🤑🤑🤑";
             playerBalance += playerBet * 2;
             updateHighScore(); // Update high score
         } else if (playerTotal < dealerTotal) {
-            document.getElementById('message').innerText = "Dealer wins";
+            document.getElementById('message').innerText = "Dealer wins.🤡🤡🤡";
         } else {
-            document.getElementById('message').innerText = "It's a tie.";
+            document.getElementById('message').innerText = "It's a tie.🥶";
             playerBalance += playerBet;
         }
         endGame();
@@ -130,12 +130,12 @@ function checkForBlackjack() {
     const dealerTotal = calculateTotal(dealerHand);
 
     if (playerTotal === 21) {
-        document.getElementById('message').innerText = "Blackjack! You win!";
+        document.getElementById('message').innerText = "Blackjack! You win!🤑🤑🤑🤑";
         playerBalance += playerBet * 2.5;
         updateHighScore(); // Update high score
         endGame();
     } else if (dealerTotal === 21) {
-        document.getElementById('message').innerText = "Dealer has Blackjack! You lose.";
+        document.getElementById('message').innerText = "Dealer has Blackjack! You lose.🥶";
         endGame();
     }
 }
