@@ -154,12 +154,22 @@ function endGame() {
     document.getElementById('hitButton').disabled = true;
     document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
+    saveGameState(); // Save game state at the end of the game
   }, 4000);
 }
 
 function updateHighScore() {
   if (playerBalance > highScore) {
     highScore = playerBalance;
+    document.getElementById('highScore').innerText = `High Score: $${highScore}`;
+    localStorage.setItem('blackjackHighScore', highScore); // Save high score to local storage
+  }
+}
+
+function loadHighScore() {
+  const savedHighScore = localStorage.getItem('blackjackHighScore');
+  if (savedHighScore) {
+    highScore = parseInt(savedHighScore, 10);
     document.getElementById('highScore').innerText = `High Score: $${highScore}`;
   }
 }
@@ -186,7 +196,7 @@ function loadGameState() {
     const gameState = JSON.parse(savedState);
 
     const currentTime = Date.now();
-    if (currentTime - gameState.timestamp <= 30000) {
+    if (currentTime - gameState.timestamp <= 30000 && !gameStarted) { // Prevent loading while the game is running
       playerBalance = gameState.playerBalance;
       playerHand = gameState.playerHand;
       dealerHand = gameState.dealerHand;
@@ -205,8 +215,7 @@ function loadGameState() {
 }
 
 window.onload = function() {
+  loadHighScore(); // Load high score on page load
   loadGameState();
   setInterval(saveGameState, 30000);
 }
-
-setInterval(saveGameState, 60000);
