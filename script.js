@@ -91,17 +91,12 @@ function stand() {
     }
     renderHands(true);
     const dealerTotal = calculateTotal(dealerHand);
-    if (playerTotal > dealerTotal) {
+    if (dealerTotal > 21 || playerTotal > dealerTotal) {
       document.getElementById('message').innerText = "You win!🤑";
       playerBalance += playerBet * 2;
       updateHighScore();
     } else if (playerTotal < dealerTotal) {
       document.getElementById('message').innerText = "Dealer wins.🤡";
-    } 
-    if (dealerTotal > 21) {
-      document.getElementById('message').innerText = "Dealer bust🤡, you win!🤑";
-      playerBalance += playerBet * 2;
-      updateHighScore();
     } else {
       document.getElementById('message').innerText = "It's a tie.🥶";
       playerBalance += playerBet;
@@ -135,7 +130,7 @@ function checkForBlackjack() {
   const dealerTotal = calculateTotal(dealerHand);
 
   if (playerTotal === 21) {
-    document.getElementById('message').innerText = "Blackjack! You win!🤑";
+    document.getElementById('message').innerText = "Blackjack! You win!🤑🤑🤑🤑";
     playerBalance += playerBet * 2.5;
     updateHighScore();
     endGame();
@@ -159,22 +154,12 @@ function endGame() {
     document.getElementById('hitButton').disabled = true;
     document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
-    saveGameState(); // Save game state at the end of the game
   }, 4000);
 }
 
 function updateHighScore() {
   if (playerBalance > highScore) {
     highScore = playerBalance;
-    document.getElementById('highScore').innerText = `High Score: $${highScore}`;
-    localStorage.setItem('blackjackHighScore', highScore); // Save high score to local storage
-  }
-}
-
-function loadHighScore() {
-  const savedHighScore = localStorage.getItem('blackjackHighScore');
-  if (savedHighScore) {
-    highScore = parseInt(savedHighScore, 10);
     document.getElementById('highScore').innerText = `High Score: $${highScore}`;
   }
 }
@@ -201,7 +186,7 @@ function loadGameState() {
     const gameState = JSON.parse(savedState);
 
     const currentTime = Date.now();
-    if (currentTime - gameState.timestamp <= 30000 && !gameStarted) { // Prevent loading while the game is running
+    if (currentTime - gameState.timestamp <= 30000) {
       playerBalance = gameState.playerBalance;
       playerHand = gameState.playerHand;
       dealerHand = gameState.dealerHand;
@@ -220,7 +205,8 @@ function loadGameState() {
 }
 
 window.onload = function() {
-  loadHighScore(); // Load high score on page load
   loadGameState();
   setInterval(saveGameState, 30000);
 }
+
+setInterval(saveGameState, 60000);
