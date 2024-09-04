@@ -130,7 +130,7 @@ function checkForBlackjack() {
   const dealerTotal = calculateTotal(dealerHand);
 
   if (playerTotal === 21) {
-    document.getElementById('message').innerText = "Blackjack! You win!🤑🤑🤑🤑";
+    document.getElementById('message').innerText = "Blackjack! You win!🤑";
     playerBalance += playerBet * 2.5;
     updateHighScore();
     endGame();
@@ -154,12 +154,22 @@ function endGame() {
     document.getElementById('hitButton').disabled = true;
     document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
+    saveGameState();
   }, 4000);
 }
 
 function updateHighScore() {
   if (playerBalance > highScore) {
     highScore = playerBalance;
+    document.getElementById('highScore').innerText = `High Score: $${highScore}`;
+    localStorage.setItem('blackjackHighScore', highScore);
+  }
+}
+
+function loadHighScore() {
+  const savedHighScore = localStorage.getItem('blackjackHighScore');
+  if (savedHighScore) {
+    highScore = parseInt(savedHighScore, 10);
     document.getElementById('highScore').innerText = `High Score: $${highScore}`;
   }
 }
@@ -186,7 +196,8 @@ function loadGameState() {
     const gameState = JSON.parse(savedState);
 
     const currentTime = Date.now();
-    if (currentTime - gameState.timestamp <= 30000) {
+    if (currentTime - gameState.timestamp <= 30000 && !gameStarted) 
+    {
       playerBalance = gameState.playerBalance;
       playerHand = gameState.playerHand;
       dealerHand = gameState.dealerHand;
@@ -205,8 +216,6 @@ function loadGameState() {
 }
 
 window.onload = function() {
+  loadHighScore();
   loadGameState();
-  setInterval(saveGameState, 30000);
 }
-
-setInterval(saveGameState, 60000);
