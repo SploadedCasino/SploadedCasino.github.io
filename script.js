@@ -180,13 +180,13 @@ document.getElementById('bettingArea').addEventListener('click', function() {
 
 function saveGameState() {
   const gameState = {
-    playerBalance: playerBalance,
+    playerBalance: playerBalance, // Add playerBalance to the object
     playerHand: playerHand,
     dealerHand: dealerHand,
     gameStarted: gameStarted,
     playerBet: playerBet,
     timestamp: Date.now(),
-    highScore: highScore 
+    highScore: highScore // Save the highScore as well
   };
   localStorage.setItem('blackjackGameState', JSON.stringify(gameState));
 }
@@ -200,8 +200,8 @@ function loadGameState() {
     const currentTime = Date.now();
     if (currentTime - gameState.timestamp <= 30000 && !gameStarted) 
     {
-      playerBalance = gameState.playerBalance;
-      highScore = gameState.highScore;
+      playerBalance = gameState.playerBalance; // Load the saved playerBalance
+      highScore = gameState.highScore; // Load the saved highScore
       playerHand = gameState.playerHand;
       dealerHand = gameState.dealerHand;
       gameStarted = gameState.gameStarted;
