@@ -185,10 +185,12 @@ function saveGameState() {
     dealerHand: dealerHand,
     gameStarted: gameStarted,
     playerBet: playerBet,
-    timestamp: Date.now()
+    timestamp: Date.now(),
+    highScore: highScore 
   };
   localStorage.setItem('blackjackGameState', JSON.stringify(gameState));
 }
+
 
 function loadGameState() {
   const savedState = localStorage.getItem('blackjackGameState');
@@ -199,12 +201,14 @@ function loadGameState() {
     if (currentTime - gameState.timestamp <= 30000 && !gameStarted) 
     {
       playerBalance = gameState.playerBalance;
+      highScore = gameState.highScore;
       playerHand = gameState.playerHand;
       dealerHand = gameState.dealerHand;
       gameStarted = gameState.gameStarted;
       playerBet = gameState.playerBet;
 
       updateBalance();
+      document.getElementById('highScore').innerText = `High Score: $${highScore}`;
       renderHands(true);
       if (gameStarted) {
         document.getElementById('hitButton').disabled = false;
@@ -214,6 +218,7 @@ function loadGameState() {
     }
   }
 }
+
 
 window.onload = function() {
   loadHighScore();
