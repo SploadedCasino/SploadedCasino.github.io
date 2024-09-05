@@ -180,45 +180,37 @@ document.getElementById('bettingArea').addEventListener('click', function() {
 
 function saveGameState() {
   const gameState = {
-    playerBalance: playerBalance, // Add playerBalance to the object
+    playerBalance: playerBalance,
     playerHand: playerHand,
     dealerHand: dealerHand,
     gameStarted: gameStarted,
     playerBet: playerBet,
-    timestamp: Date.now(),
-    highScore: highScore // Save the highScore as well
+    highScore: highScore
   };
   localStorage.setItem('blackjackGameState', JSON.stringify(gameState));
 }
-
 
 function loadGameState() {
   const savedState = localStorage.getItem('blackjackGameState');
   if (savedState) {
     const gameState = JSON.parse(savedState);
+    playerBalance = gameState.playerBalance;
+    highScore = gameState.highScore;
+    playerHand = gameState.playerHand;
+    dealerHand = gameState.dealerHand;
+    gameStarted = gameState.gameStarted;
+    playerBet = gameState.playerBet;
 
-    const currentTime = Date.now();
-    if (currentTime - gameState.timestamp <= 30000 && !gameStarted) 
-    {
-      playerBalance = gameState.playerBalance; // Load the saved playerBalance
-      highScore = gameState.highScore; // Load the saved highScore
-      playerHand = gameState.playerHand;
-      dealerHand = gameState.dealerHand;
-      gameStarted = gameState.gameStarted;
-      playerBet = gameState.playerBet;
-
-      updateBalance();
-      document.getElementById('highScore').innerText = `High Score: $${highScore}`;
-      renderHands(true);
-      if (gameStarted) {
-        document.getElementById('hitButton').disabled = false;
-        document.getElementById('standButton').disabled = false;
-        document.getElementById('startButton').disabled = true;
-      }
+    updateBalance();
+    document.getElementById('highScore').innerText = `High Score: $${highScore}`;
+    renderHands(true);
+    if (gameStarted) {
+      document.getElementById('hitButton').disabled = false;
+      document.getElementById('standButton').disabled = false;
+      document.getElementById('startButton').disabled = true;
     }
   }
 }
-
 
 window.onload = function() {
   loadHighScore();
