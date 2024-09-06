@@ -154,6 +154,7 @@ function endGame() {
     document.getElementById('hitButton').disabled = true;
     document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
+    checkForBankruptcy();
     saveGameState();
   }, 4000);
 }
@@ -211,8 +212,29 @@ function loadGameState() {
     }
   }
 }
+function checkForBankruptcy() {
+  if (playerBalance <= 0) {
+    const messageDiv = document.getElementById('message');
+    messageDiv.innerText = "You lost all your money! Play again?";
+    const yesButton1 = document.createElement('button');
+    yesButton1.innerText = "Yes";
+    yesButton1.onclick = () => resetBalance();
+    messageDiv.appendChild(yesButton1);
+    const yesButton2 = document.createElement('button');
+    yesButton2.innerText = "Yes";
+    yesButton2.onclick = () => resetBalance();
+    messageDiv.appendChild(yesButton2);
+  }
+}
 
+function resetBalance() {
+  playerBalance = 500;
+  updateBalance();
+  saveGameState();
+  document.getElementById('message').innerText = '';
+}
 window.onload = function() {
   loadHighScore();
   loadGameState();
+  checkForBankruptcy();
 }
