@@ -3,7 +3,7 @@ let playerBet = 0;
 let playerHand = [];
 let dealerHand = [];
 let gameStarted = false;
-let highScore = 0;
+let highScore = 1000;
 
 function updateBalance() {
   document.getElementById('playerBalance').innerText = `Balance: $${playerBalance}`;
