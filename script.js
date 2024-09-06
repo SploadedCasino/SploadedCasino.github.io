@@ -155,6 +155,7 @@ function endGame() {
     document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
     saveGameState();
+    checkForBankruptcy(); // Check for bankruptcy only after the game ends
   }, 4000);
 }
 
@@ -185,34 +186,64 @@ function saveGameState() {
     dealerHand: dealerHand,
     gameStarted: gameStarted,
     playerBet: playerBet,
-    highScore: highScore
+    timestamp: Date.now(),
+    highScore: highScore 
   };
   localStorage.setItem('blackjackGameState', JSON.stringify(gameState));
 }
+
 
 function loadGameState() {
   const savedState = localStorage.getItem('blackjackGameState');
   if (savedState) {
     const gameState = JSON.parse(savedState);
-    playerBalance = gameState.playerBalance;
-    highScore = gameState.highScore;
-    playerHand = gameState.playerHand;
-    dealerHand = gameState.dealerHand;
-    gameStarted = gameState.gameStarted;
-    playerBet = gameState.playerBet;
 
-    updateBalance();
-    document.getElementById('highScore').innerText = `High Score: $${highScore}`;
-    renderHands(true);
-    if (gameStarted) {
-      document.getElementById('hitButton').disabled = false;
-      document.getElementById('standButton').disabled = false;
-      document.getElementById('startButton').disabled = true;
+    const currentTime = Date.now();
+    if (currentTime - gameState.timestamp <= 30000 && !gameStarted) 
+    {
+      playerBalance = gameState.playerBalance; 
+      highScore = gameState.highScore; 
+      playerHand = gameState.playerHand;
+      dealerHand = gameState.dealerHand;
+      gameStarted = gameState.gameStarted;
+      playerBet = gameState.playerBet;
+
+      updateBalance();
+      document.getElementById('highScore').innerText = `High Score: $${highScore}`;
+      renderHands(true);
+      if (gameStarted) {
+        document.getElementById('hitButton').disabled = false;
+        document.getElementById('standButton').disabled = false;
+        document.getElementById('startButton').disabled = true;
+      }
     }
   }
 }
 
+function checkForBankruptcy() {
+  if (playerBalance <= 0) {
+    const messageDiv = document.getElementById('message');
+    messageDiv.innerText = "You lost all your money! Play again?";
+    const yesButton1 = document.createElement('button');
+    yesButton1.innerText = "Yes";
+    yesButton1.onclick = () => resetBalance(); 
+    messageDiv.appendChild(yesButton1);
+    const yesButton2 = document.createElement('button');
+    yesButton2.innerText = "Yes";
+    yesButton2.onclick = () => resetBalance(); 
+    messageDiv.appendChild(yesButton2);
+  }
+}
+
+function resetBalance() {
+  playerBalance = 500; 
+  updateBalance(); 
+  document.getElementById('message').innerText = ''; 
+}
+
+
 window.onload = function() {
   loadHighScore();
   loadGameState();
+  checkForBankruptcy();
 }
