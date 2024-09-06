@@ -155,7 +155,7 @@ function endGame() {
     document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
     checkForBankruptcy();
-    saveGameState(); 
+    saveGameState();
   }, 4000);
 }
 
@@ -187,7 +187,7 @@ function saveGameState() {
     gameStarted: gameStarted,
     playerBet: playerBet,
     timestamp: Date.now(),
-    highScore: highScore 
+    highScore: highScore
   };
   localStorage.setItem('blackjackGameState', JSON.stringify(gameState));
 }
@@ -199,10 +199,10 @@ function loadGameState() {
     const gameState = JSON.parse(savedState);
 
     const currentTime = Date.now();
-    if (currentTime - gameState.timestamp <= 30000 && !gameStarted) 
+    if (currentTime - gameState.timestamp <= 30000 && !gameStarted)
     {
-      playerBalance = gameState.playerBalance; 
-      highScore = gameState.highScore; 
+      playerBalance = gameState.playerBalance;
+      highScore = gameState.highScore;
       playerHand = gameState.playerHand;
       dealerHand = gameState.dealerHand;
       gameStarted = gameState.gameStarted;
@@ -226,19 +226,19 @@ function checkForBankruptcy() {
     messageDiv.innerText = "You lost all your money! Play again?";
     const yesButton1 = document.createElement('button');
     yesButton1.innerText = "Yes";
-    yesButton1.onclick = () => resetBalance(); 
+    yesButton1.onclick = () => resetBalance();
     messageDiv.appendChild(yesButton1);
     const yesButton2 = document.createElement('button');
     yesButton2.innerText = "Yes";
-    yesButton2.onclick = () => resetBalance(); 
+    yesButton2.onclick = () => resetBalance();
     messageDiv.appendChild(yesButton2);
   }
 }
 
 function resetBalance() {
-  playerBalance = 500; 
-  updateBalance(); 
-  document.getElementById('message').innerText = ''; 
+  playerBalance = 500;
+  updateBalance();
+  document.getElementById('message').innerText = '';
 }
 
 
