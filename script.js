@@ -3,7 +3,7 @@ let playerBet = 0;
 let playerHand = [];
 let dealerHand = [];
 let gameStarted = false;
-let highScore = 1000;
+let highScore = 0;
 
 function updateBalance() {
   document.getElementById('playerBalance').innerText = `Balance: $${playerBalance}`;
@@ -154,7 +154,6 @@ function endGame() {
     document.getElementById('hitButton').disabled = true;
     document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
-    checkForBankruptcy();
     saveGameState();
   }, 4000);
 }
@@ -186,64 +185,34 @@ function saveGameState() {
     dealerHand: dealerHand,
     gameStarted: gameStarted,
     playerBet: playerBet,
-    timestamp: Date.now(),
     highScore: highScore
   };
   localStorage.setItem('blackjackGameState', JSON.stringify(gameState));
 }
 
-
 function loadGameState() {
   const savedState = localStorage.getItem('blackjackGameState');
   if (savedState) {
     const gameState = JSON.parse(savedState);
+    playerBalance = gameState.playerBalance;
+    highScore = gameState.highScore;
+    playerHand = gameState.playerHand;
+    dealerHand = gameState.dealerHand;
+    gameStarted = gameState.gameStarted;
+    playerBet = gameState.playerBet;
 
-    const currentTime = Date.now();
-    if (currentTime - gameState.timestamp <= 30000 && !gameStarted)
-    {
-      playerBalance = gameState.playerBalance;
-      highScore = gameState.highScore;
-      playerHand = gameState.playerHand;
-      dealerHand = gameState.dealerHand;
-      gameStarted = gameState.gameStarted;
-      playerBet = gameState.playerBet;
-
-      updateBalance();
-      document.getElementById('highScore').innerText = `High Score: $${highScore}`;
-      renderHands(true);
-      if (gameStarted) {
-        document.getElementById('hitButton').disabled = false;
-        document.getElementById('standButton').disabled = false;
-        document.getElementById('startButton').disabled = true;
-      }
+    updateBalance();
+    document.getElementById('highScore').innerText = `High Score: $${highScore}`;
+    renderHands(true);
+    if (gameStarted) {
+      document.getElementById('hitButton').disabled = false;
+      document.getElementById('standButton').disabled = false;
+      document.getElementById('startButton').disabled = true;
     }
   }
 }
 
-function checkForBankruptcy() {
-  if (playerBalance <= 0) {
-    const messageDiv = document.getElementById('message');
-    messageDiv.innerText = "You lost all your money! Play again?";
-    const yesButton1 = document.createElement('button');
-    yesButton1.innerText = "Yes";
-    yesButton1.onclick = () => resetBalance();
-    messageDiv.appendChild(yesButton1);
-    const yesButton2 = document.createElement('button');
-    yesButton2.innerText = "Yes";
-    yesButton2.onclick = () => resetBalance();
-    messageDiv.appendChild(yesButton2);
-  }
-}
-
-function resetBalance() {
-  playerBalance = 500;
-  updateBalance();
-  document.getElementById('message').innerText = '';
-}
-
-
 window.onload = function() {
   loadHighScore();
   loadGameState();
-  checkForBankruptcy();
 }
