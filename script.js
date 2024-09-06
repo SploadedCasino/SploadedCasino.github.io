@@ -11,7 +11,7 @@ function updateBalance() {
 
 function placeBet(amount) {
   if (!gameStarted) {
-    if (playerBet + amount <= playerBalance) {
+    if (amount <= playerBalance) {
       playerBet += amount;
       playerBalance -= amount;
       updateBalance();
