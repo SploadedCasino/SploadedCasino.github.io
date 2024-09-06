@@ -3,7 +3,7 @@ let playerBet = 0;
 let playerHand = [];
 let dealerHand = [];
 let gameStarted = false;
-let highScore = 0;
+let highScore = 1000;
 
 function updateBalance() {
   document.getElementById('playerBalance').innerText = `Balance: $${playerBalance}`;
@@ -154,8 +154,8 @@ function endGame() {
     document.getElementById('hitButton').disabled = true;
     document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
-    saveGameState();
-    checkForBankruptcy(); // Check for bankruptcy only after the game ends
+    checkForBankruptcy();
+    saveGameState(); 
   }, 4000);
 }
 
