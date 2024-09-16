@@ -1,50 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="description" content="This is a simple Blackjack game with more to come">
-    <meta name="keywords" content="Blackjack, SploadedBoi, game, games, github, github games, blackjack game, blackjack games, blackjack, github game, unblocked game, unblocked games, unblocked blackjack, unblocked blackjack game, unblocked blackjack games, gambling, gambling online, gambling online unblocked, casino, casino game, casino games, simple bj, bj, simple bj game, simple blackjack, simple blackjack game, simple game, simple games">
+    <title>Sploaded Casino</title>
     <meta name="author" content="SploadedBoi">
-    <link rel="icon" href="/favicon.png" type="image/png">
-    <link rel="shortcut icon" type="image/png" href="favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple BlackJack</title>
+    <meta name="description" content="A collection of exciting casino-style games including but not limited to Blackjack, Roulette, and Plinko.">
+    <meta name="keywords" content="Casino Games, Blackjack, Roulette, Plinko, Online Games, Game Hub">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="table">
-        <h1>Blackjack</h1>
-        <div id="balanceContainer">
-            <span id="playerBalance">Balance: $1000</span>
-            <span id="highScore">High Score: $1000</span>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Sploaded Casino Logo"></a>
         </div>
-        <div id="bettingArea">
-            <button onclick="placeBet(1)">Bet $1</button>
-            <button onclick="placeBet(5)">Bet $5</button>
-            <button onclick="placeBet(25)">Bet $25</button>
-            <button onclick="placeBet(100)">Bet $100</button>
-            <button onclick="placeBet(500)">Bet $500</button>
-            <button onclick="placeBet(1000)">Bet $1000</button>
-            <button id="startButton" onclick="startGame()" disabled>Deal Cards</button>
-        </div>
-        <div id="gameArea">
-            <div id="dealerCards" class="cards"></div>
-            <div id="message"></div>
-            <div id="playerCards" class="cards"></div>
-        </div>
-        <button id="hitButton" onclick="hit()" disabled>Hit</button>
-        <button id="standButton" onclick="stand()" disabled>Stand</button>
-    </div>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Simple Blackjack",
-      "url": "https://bjgame.github.io/",
-      "sameAs": ["https://github.com/bjGame/bjGame.github.io", "https://github.com/bjGame", "https://www.youtube.com/@SploadedBoi", "https://www.youtube.com/@SploadedBoi?app=desktop", "https://www.youtube.com/channel/UCvy2d1hH6IsLgh6QTE0OayA/featured"
-    }
-    </script>
-
-    <script src="script.js"></script>
+    </header>
+    <main>
+        <section class="game-selection">
+            <h2>Select Your Game</h2>
+            <div class="game-container">
+                <a href="blackjack.html"><img src="blackjack.avif" alt="Blackjack" class="cardss"></a>
+                <a href="plinko.html"><img src="plinko.avif" alt="Plinko" class="cardss"></a>
+                <a href="roulette.html"><img src="roulette.avif" alt="Roulette" class="cardss"></a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 SploadedBoi Casino Games. All rights reserved.</p>
+        <a href="about.html" style="color: white; text-align: right;">About Us</a></li>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nicholas.beaudean@students.mot.k12.de.us" style="color: white; text-align: right;">Contact Us!</a>
+        <a href="https://github.com/bjGame/bjGame.github.io" style="color: white; text-align: right;">Github Repository</a>
+    </footer>
 </body>
 </html>
