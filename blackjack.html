@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="This is a simple Blackjack game with more to come">
+    <meta name="keywords" content="Casino Games, Blackjack, Roulette, Plinko, Online Games, Game Hub">
+    <meta name="author" content="SploadedBoi">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackJack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Sploaded Casino Logo"></a>
+        </div>
+    </header>
+    <div class="table">
+        <div class="logo">
+            <img src="blackjack-logo.png" alt="BlackJack Logo" class="centered-image" width="300">
+        </div>
+        <div id="balanceContainer">
+            <span id="playerBalance">Balance: $1000</span>
+            <span id="highScore">High Score: $1000</span>
+        </div>
+        <div id="bettingArea">
+            <button onclick="placeBet(1)">Bet $1</button>
+            <button onclick="placeBet(5)">Bet $5</button>
+            <button onclick="placeBet(25)">Bet $25</button>
+            <button onclick="placeBet(100)">Bet $100</button>
+            <button onclick="placeBet(500)">Bet $500</button>
+            <button onclick="placeBet(1000)">Bet $1000</button>
+            <button id="startButton" onclick="startGame()" disabled>Deal Cards</button>
+        </div>
+        <div id="gameArea">
+            <div id="dealerCards" class="cards"></div>
+            <div id="message"></div>
+            <div id="playerCards" class="cards"></div>
+        </div>
+        <button id="hitButton" onclick="hit()" disabled>Hit</button>
+        <button id="standButton" onclick="stand()" disabled>Stand</button>
+    </div>
+    <script src="script.js"></script>
+    <footer>
+        <p>© 2024 SploadedBoi Casino Games. All rights reserved.</p>
+        <a href="about.html" style="color: white; text-align: right;">About Us</a></li>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nicholas.beaudean@students.mot.k12.de.us" style="color: white; text-align: right;">Contact Us!</a>
+        <a href="https://github.com/bjGame/bjGame.github.io" style="color: white; text-align: right;">Github Repository</a>
+    </footer>
+</body>
+</html>
