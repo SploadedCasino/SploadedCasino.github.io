@@ -1,1 +1,1 @@
-bjGame.github.io
+SploadedCasino.github.io
