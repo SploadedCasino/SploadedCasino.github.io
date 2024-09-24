@@ -8,13 +8,21 @@ let highScore = 1000;
 function updateBalance() {
   document.getElementById('playerBalance').innerText = `Balance: $${playerBalance}`;
 }
-
+function clearBet() {
+  if (!gameStarted) {
+    playerBalance += playerBet; 
+    playerBet = 0; 
+    updateBalance(); 
+    document.getElementById('clearbetButton').disabled = true;
+  }
+}
 function placeBet(amount) {
   if (!gameStarted) {
     if (amount <= playerBalance) {
       playerBet += amount;
       playerBalance -= amount;
       updateBalance();
+      document.getElementById('clearbetButton').disabled = false;
     } else {
       alert("Insufficient balance for this bet.");
     }
@@ -31,6 +39,7 @@ function startGame() {
     document.getElementById('hitButton').disabled = false;
     document.getElementById('standButton').disabled = false;
     document.getElementById('startButton').disabled = true;
+    document.getElementById('clearbetButton').disabled = true;
   }
 }
 
@@ -154,6 +163,7 @@ function endGame() {
     document.getElementById('hitButton').disabled = true;
     document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
+    document.getElementById('clearbetButton').disabled = true;
     checkForBankruptcy();
     saveGameState();
   }, 4000);
