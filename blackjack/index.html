@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BlackJack</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -30,7 +30,6 @@
   }
 }
 </script>
-
 </head>
 <body>
     <header>
@@ -38,6 +37,8 @@
             <a href="../"><img src="../logo.png" alt="Sploaded Casino Logo"></a>
         </div>
     </header>
+    <main>
+    <section class="game-selection">
     <div class="table-wrapper">
         <div class="table">
             <div id="balanceContainer">
@@ -51,7 +52,7 @@
                 <button onclick="placeBet(100)">Bet $100</button>
                 <button onclick="placeBet(500)">Bet $500</button>
                 <button onclick="placeBet(1000)">Bet $1000</button>
-                <button id="startButton" onclick="startGame()" disabled>Deal Cards</button>
+                <button onclick="placeBet(10000)">Bet $10,000</button>
                 <button id="clearbetButton" onclick="clearBet()" disabled>Clear Bet</button>
             </div>
             <div id="gameArea">
@@ -61,8 +62,11 @@
             </div>
             <button id="hitButton" onclick="hit()" disabled>Hit</button>
             <button id="standButton" onclick="stand()" disabled>Stand</button>
+            <button id="startButton" onclick="startGame()" disabled>Deal Cards</button>
         </div>
     </div>
+    </section>
+    </main>
     <script src="../script.js"></script>
     <footer>
         <p>© 2024 SploadedBoi Casino Games. All rights reserved.</p>
