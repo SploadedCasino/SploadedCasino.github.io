@@ -140,7 +140,7 @@ function checkForBlackjack() {
 
   if (playerTotal === 21) {
     document.getElementById('message').innerText = "Blackjack! You win!🤑";
-    playerBalance += playerBet * 2.5;
+    playerBalance += Math.round(playerBet * 2.5);
     updateHighScore();
     endGame();
   } else if (dealerTotal === 21) {
