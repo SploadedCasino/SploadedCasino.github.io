@@ -38,28 +38,30 @@
             <a href="../"><img src="../logo.png" alt="Sploaded Casino Logo"></a>
         </div>
     </header>
-    <div class="table">
-        <div id="balanceContainer">
-            <span id="playerBalance">Balance: $1000</span>
-            <span id="highScore">High Score: $1000</span>
+    <div class="table-wrapper">
+        <div class="table">
+            <div id="balanceContainer">
+                <span id="playerBalance">Balance: $1000</span>
+                <span id="highScore">High Score: $1000</span>
+            </div>
+            <div id="bettingArea">
+                <button onclick="placeBet(1)">Bet $1</button>
+                <button onclick="placeBet(5)">Bet $5</button>
+                <button onclick="placeBet(25)">Bet $25</button>
+                <button onclick="placeBet(100)">Bet $100</button>
+                <button onclick="placeBet(500)">Bet $500</button>
+                <button onclick="placeBet(1000)">Bet $1000</button>
+                <button id="startButton" onclick="startGame()" disabled>Deal Cards</button>
+                <button id="clearbetButton" onclick="clearBet()" disabled>Clear Bet</button>
+            </div>
+            <div id="gameArea">
+                <div id="dealerCards" class="cards"></div>
+                <div id="message"></div>
+                <div id="playerCards" class="cards"></div>
+            </div>
+            <button id="hitButton" onclick="hit()" disabled>Hit</button>
+            <button id="standButton" onclick="stand()" disabled>Stand</button>
         </div>
-        <div id="bettingArea">
-            <button onclick="placeBet(1)">Bet $1</button>
-            <button onclick="placeBet(5)">Bet $5</button>
-            <button onclick="placeBet(25)">Bet $25</button>
-            <button onclick="placeBet(100)">Bet $100</button>
-            <button onclick="placeBet(500)">Bet $500</button>
-            <button onclick="placeBet(1000)">Bet $1000</button>
-            <button id="startButton" onclick="startGame()" disabled>Deal Cards</button>
-            <button id="clearbetButton" onclick="clearBet()" disabled>Clear Bet</button>
-        </div>
-        <div id="gameArea">
-            <div id="dealerCards" class="cards"></div>
-            <div id="message"></div>
-            <div id="playerCards" class="cards"></div>
-        </div>
-        <button id="hitButton" onclick="hit()" disabled>Hit</button>
-        <button id="standButton" onclick="stand()" disabled>Stand</button>
     </div>
     <script src="../script.js"></script>
     <footer>
