@@ -237,10 +237,7 @@ button {
   transition: background-color 0.3s;
 }
 button:hover {
-  background-color: #00e604;
-}
-.clear-bet-button:hover {
-  background-color: #00ff00;
+  background-color: #85BB65;
 }
 .clear-bet-button:disabled {
   background-color: #ccc;
