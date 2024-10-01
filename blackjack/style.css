@@ -237,18 +237,17 @@ button {
   transition: background-color 0.3s;
 }
 button:hover {
-  background-color: #85BB65;
+  background-color: #00e604;
 }
-
+.clear-bet-button:hover {
+  background-color: #00ff00;
+}
 .clear-bet-button:disabled {
   background-color: #ccc;
   color: #666;
   border: 1px solid #999;
   cursor: not-allowed;
   opacity: 0.6;
-}
-.clear-bet-button:hover {
-  background-color: #ff0000;
 }
 button:disabled {
   background-color: #ccc;
