@@ -47,6 +47,10 @@ function startGame() {
     document.getElementById('standButton').disabled = false;
     document.getElementById('startButton').disabled = true;
     document.getElementById('clearbetButton').disabled = true;
+
+    // Disable bet buttons after starting the game
+    let betButtons = document.querySelectorAll('.placebetButton');
+    betButtons.forEach(button => button.disabled = true);
   }
 }
 
@@ -190,6 +194,11 @@ function endGame() {
     document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
     document.getElementById('clearbetButton').disabled = true;
+
+    // Re-enable bet buttons after the game ends
+    let betButtons = document.querySelectorAll('.placebetButton');
+    betButtons.forEach(button => button.disabled = false);
+
     checkForBankruptcy();
     saveGameState();
   }, 4000);
@@ -212,7 +221,9 @@ function loadHighScore() {
 }
 
 document.getElementById('bettingArea').addEventListener('click', function() {
-  document.getElementById('startButton').disabled = false;
+  if (playerBet > 0 && !gameStarted) {
+    document.getElementById('startButton').disabled = false;
+  }
 });
 
 function saveGameState() {
@@ -248,6 +259,7 @@ function loadGameState() {
     }
   }
 }
+
 function checkForBankruptcy() {
   if (playerBalance <= 0) {
     const messageDiv = document.getElementById('message');
@@ -257,18 +269,19 @@ function checkForBankruptcy() {
     yesButton1.onclick = () => resetBalance();
     messageDiv.appendChild(yesButton1);
     const yesButton2 = document.createElement('button');
-    yesButton2.innerText = "Yes";
-    yesButton2.onclick = () => resetBalance();
+    yesButton2.innerText = "No";
+    yesButton2.onclick = () => messageDiv.innerHTML = 'Game over!';
     messageDiv.appendChild(yesButton2);
   }
 }
 
 function resetBalance() {
-  playerBalance = 500;
+  playerBalance = 1000;
+  playerBet = 0;
   updateBalance();
-  saveGameState();
-  document.getElementById('message').innerText = '';
+  document.getElementById('message').innerHTML = '';
 }
+
 window.onload = function() {
   loadHighScore();
   loadGameState();
