@@ -36,6 +36,9 @@ function placeBet(amount) {
 function startGame() {
   if (playerBet > 0 && !gameStarted) {
     gameStarted = true;
+    document.getElementById('dealerLabel').style.display = 'block';
+    document.getElementById('playerLabel').style.display = 'block';
+
     if (deck.length < numberOfDecks * 52 * 0.25) {
       deck = shuffleDeck(createDeck());
     }
@@ -47,8 +50,6 @@ function startGame() {
     document.getElementById('standButton').disabled = false;
     document.getElementById('startButton').disabled = true;
     document.getElementById('clearbetButton').disabled = true;
-
-    // Disable bet buttons after starting the game
     let betButtons = document.querySelectorAll('.placebetButton');
     betButtons.forEach(button => button.disabled = true);
   }
@@ -194,11 +195,10 @@ function endGame() {
     document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
     document.getElementById('clearbetButton').disabled = true;
-
-    // Re-enable bet buttons after the game ends
+    document.getElementById('dealerLabel').style.display = 'none';
+    document.getElementById('playerLabel').style.display = 'none';
     let betButtons = document.querySelectorAll('.placebetButton');
     betButtons.forEach(button => button.disabled = false);
-
     checkForBankruptcy();
     saveGameState();
   }, 4000);
