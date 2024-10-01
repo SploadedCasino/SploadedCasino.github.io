@@ -4,10 +4,13 @@ let playerHand = [];
 let dealerHand = [];
 let gameStarted = false;
 let highScore = 1000;
+let deck = [];
+const numberOfDecks = 8;
 
 function updateBalance() {
   document.getElementById('playerBalance').innerText = `Balance: $${playerBalance}`;
 }
+
 function clearBet() {
   if (!gameStarted) {
     playerBalance += playerBet; 
@@ -16,6 +19,7 @@ function clearBet() {
     document.getElementById('clearbetButton').disabled = true;
   }
 }
+
 function placeBet(amount) {
   if (!gameStarted) {
     if (amount <= playerBalance) {
@@ -32,6 +36,9 @@ function placeBet(amount) {
 function startGame() {
   if (playerBet > 0 && !gameStarted) {
     gameStarted = true;
+    if (deck.length < numberOfDecks * 52 * 0.25) {
+      deck = shuffleDeck(createDeck());
+    }
     playerHand = [drawCard(), drawCard()];
     dealerHand = [drawCard(), drawCard()];
     renderHands();
@@ -43,10 +50,29 @@ function startGame() {
   }
 }
 
+function createDeck() {
+  const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
+  const deck = [];
+  for (let i = 0; i < numberOfDecks; i++) {
+    for (let suit of suits) {
+      for (let value = 1; value <= 13; value++) {
+        deck.push({ value, type: suit });
+      }
+    }
+  }
+  return deck;
+}
+
+function shuffleDeck(deck) {
+  for (let i = deck.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
+  return deck;
+}
+
 function drawCard() {
-  const cardValue = Math.floor(Math.random() * 13) + 1;
-  const cardType = ['hearts', 'diamonds', 'clubs', 'spades'][Math.floor(Math.random() * 4)];
-  return { value: cardValue, type: cardType };
+  return deck.pop();
 }
 
 function renderHands(revealDealerCard = false) {
