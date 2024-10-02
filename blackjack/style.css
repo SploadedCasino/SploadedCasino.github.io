@@ -72,6 +72,11 @@ footer {
   bottom: 0;
   margin-top: auto;
 }
+footer a {
+  color: white;
+  text-align: right;
+  margin: 0 10px;
+}
 header .logo {
   margin: auto;
 }
@@ -177,15 +182,57 @@ nav ul li a:hover {
   justify-content: center;
   margin: 10px;
   position: relative;
+  background-color: transparent;
+}
+.player-card {
+  position: relative;
+  animation-duration: 0.5s;
 }
 
+.dealer-card {
+  position: relative;
+  animation-duration: 0.5s;
+}
 .card {
   width: 100px;
   height: 130px;
   margin: 0 5px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  border-radius: 8px;
+}
+@keyframes slide-in {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
+.card.slide-in {
+  animation: slide-in 0.5s forwards;
+}
+.card.fade-out {
+  opacity: 0;
+  transform: scale(1);
+}
+
+.card.flip {
+  animation: flip 0.8s forwards;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+@keyframes flip {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(180deg); }
+  100% { transform: rotateY(0deg); }
+}
 .cardss {
   width: 100%;
   max-width: 350px;
@@ -240,7 +287,7 @@ button:hover {
   background-color: #00e604;
 }
 .clear-bet-button:hover {
-  background-color: #00ff00;
+  background-color: #ff0000;
 }
 .clear-bet-button:disabled {
   background-color: #ccc;
