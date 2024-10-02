@@ -36,16 +36,24 @@ function placeBet(amount) {
 function startGame() {
   if (playerBet > 0 && !gameStarted) {
     gameStarted = true;
-    document.getElementById('dealerLabel').style.display = 'block';
-    document.getElementById('playerLabel').style.display = 'block';
+    const dealerLabel = document.getElementById('dealerLabel');
+    const playerLabel = document.getElementById('playerLabel');
+    const message = document.getElementById('message');
+
+    dealerLabel.style.display = 'block';
+    dealerLabel.classList.remove('fade-out');
+    playerLabel.style.display = 'block';
+    playerLabel.classList.remove('fade-out');
+    message.classList.remove('fade-out');
 
     if (deck.length < numberOfDecks * 52 * 0.25) {
       deck = shuffleDeck(createDeck());
     }
+
     playerHand = [drawCard(), drawCard()];
     dealerHand = [drawCard(), drawCard()];
-    renderHands();
-    checkForBlackjack();
+
+    dealInitialCards();
     document.getElementById('hitButton').disabled = false;
     document.getElementById('standButton').disabled = false;
     document.getElementById('startButton').disabled = true;
@@ -85,14 +93,12 @@ function renderHands(revealDealerCard = false) {
   const dealerCardsDiv = document.getElementById('dealerCards');
   playerCardsDiv.innerHTML = '';
   dealerCardsDiv.innerHTML = '';
-
   playerHand.forEach(card => {
     const cardDiv = document.createElement('img');
     cardDiv.src = `cards/${card.type}_${getCardName(card.value)}.png`;
     cardDiv.className = 'card';
     playerCardsDiv.appendChild(cardDiv);
   });
-
   dealerHand.forEach((card, index) => {
     const cardDiv = document.createElement('img');
     if (index === 0 && !revealDealerCard) {
@@ -107,20 +113,59 @@ function renderHands(revealDealerCard = false) {
 
 function getCardName(value) {
   if (value === 1) return 'a';
+  if (value === 11) return 'j';
+  if (value === 12) return 'q';
+  if (value === 13) return 'k';
   if (value > 10) return '10';
   return value.toString();
 }
 
+
 function hit() {
   if (gameStarted) {
+    document.getElementById('hitButton').disabled = true;
     playerHand.push(drawCard());
-    renderHands();
-    const playerTotal = calculateTotal(playerHand);
-    if (playerTotal > 21) {
-      document.getElementById('message').innerText = "You bust, Dealer wins.🤡";
-      endGame();
-    }
+
+    dealCard(playerHand[playerHand.length - 1], 'player').then(() => {
+      const playerTotal = calculateTotal(playerHand);
+      if (playerTotal > 21) {
+        document.getElementById('message').innerText = "You bust, Dealer wins.🤡";
+        endGame();
+      }
+      setTimeout(() => {
+        document.getElementById('hitButton').disabled = false;
+      }, 1000);
+    });
   }
+}
+
+function dealCard(card, player, isHidden = false) {
+  return new Promise(resolve => {
+    const cardDiv = document.createElement('img');
+    if (isHidden && player === 'dealer') {
+      cardDiv.src = `cards/back.png`;
+    } else {
+      cardDiv.src = `cards/${card.type}_${getCardName(card.value)}.png`;
+    }
+    cardDiv.className = `card ${player}-card`;
+
+    const targetDiv = document.getElementById(`${player}Cards`);
+    targetDiv.appendChild(cardDiv);
+    cardDiv.classList.add('slide-in');
+    cardDiv.addEventListener('animationend', () => {
+      cardDiv.classList.remove('slide-in');
+      resolve();
+    });
+  });
+}
+
+async function dealInitialCards() {
+  for (let card of playerHand) {
+    await dealCard(card, 'player');
+  }
+  await dealCard(dealerHand[0], 'dealer', true);
+  await dealCard(dealerHand[1], 'dealer');
+  checkForBlackjack();
 }
 
 function stand() {
@@ -144,7 +189,6 @@ function stand() {
     endGame();
   }
 }
-
 function calculateTotal(hand) {
   let total = 0;
   let aces = 0;
@@ -176,12 +220,30 @@ function checkForBlackjack() {
     endGame();
   } else if (dealerTotal === 21) {
     document.getElementById('message').innerText = "Dealer has Blackjack! You lose.🥶";
-    endGame();
+    document.getElementById('hitButton').disabled = true;
+    document.getElementById('standButton').disabled = true;
+    setTimeout(endGame, 1);
   }
 }
 
 function endGame() {
+  gameStarted = false;
+  document.getElementById('hitButton').disabled = true;
+  document.getElementById('standButton').disabled = true;
+
   renderHands(true);
+  const dealerCards = document.querySelectorAll('#dealerCards .card');
+  const playerCards = document.querySelectorAll('#playerCards .card');
+  dealerCards[0].classList.add('flip');
+
+  setTimeout(() => {
+    dealerCards.forEach(card => card.classList.add('fade-out'));
+    playerCards.forEach(card => card.classList.add('fade-out'));
+    document.getElementById('message').classList.add('fade-out');
+    document.getElementById('dealerLabel').classList.add('fade-out');
+    document.getElementById('playerLabel').classList.add('fade-out');
+  }, 4000);
+
   setTimeout(() => {
     playerHand = [];
     dealerHand = [];
@@ -189,21 +251,20 @@ function endGame() {
     document.getElementById('dealerCards').innerHTML = '';
     document.getElementById('message').innerText = '';
     playerBet = 0;
-    gameStarted = false;
+
     updateBalance();
-    document.getElementById('hitButton').disabled = true;
-    document.getElementById('standButton').disabled = true;
     document.getElementById('startButton').disabled = true;
     document.getElementById('clearbetButton').disabled = true;
+
     document.getElementById('dealerLabel').style.display = 'none';
     document.getElementById('playerLabel').style.display = 'none';
+
     let betButtons = document.querySelectorAll('.placebetButton');
     betButtons.forEach(button => button.disabled = false);
     checkForBankruptcy();
     saveGameState();
-  }, 4000);
+  }, 5000);
 }
-
 function updateHighScore() {
   if (playerBalance > highScore) {
     highScore = playerBalance;
