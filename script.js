@@ -134,7 +134,7 @@ function hit() {
       }
       setTimeout(() => {
         document.getElementById('hitButton').disabled = false;
-      }, 1000);
+      }, 500);
     });
   }
 }
