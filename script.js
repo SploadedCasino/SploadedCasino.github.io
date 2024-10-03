@@ -206,7 +206,6 @@ function stand() {
     }
     renderHands(true);
     const dealerTotal = calculateTotal(dealerHand);
-    checkForBlackjack();
     if (dealerTotal > 21 || playerTotal > dealerTotal) {
       document.getElementById('message').innerText = "You win!🤑";
       playerBalance += playerBet * 2;
@@ -243,23 +242,21 @@ function calculateTotal(hand) {
 function checkForBlackjack() {
   const playerTotal = calculateTotal(playerHand);
   const dealerTotal = calculateTotal(dealerHand);
-  if (gameStarted) {
-    if (playerTotal === 21) {
-      document.getElementById('message').innerText = "Blackjack! You win!🤑";
-      playerBalance += Math.round(playerBet * 2.5);
-      updateHighScore();
-      endGame();
-      return;
-    }
-    if (dealerTotal === 21) {
-      setTimeout(() => {
-        document.getElementById('message').innerText = "Dealer has Blackjack! You lose.🥶";
-        endGame();
-      }, 1000);
-    }
+
+  if (playerTotal === 21) {
+    document.getElementById('message').innerText = "Blackjack! You win!🤑";
+    playerBalance += Math.round(playerBet * 2.5);
+    updateHighScore();
+    document.getElementById('doubleDownButton').disabled = true;
+    endGame();
+  } else if (dealerTotal === 21) {
+    document.getElementById('message').innerText = "Dealer has Blackjack! You lose.🥶";
+    document.getElementById('hitButton').disabled = true;
+    document.getElementById('standButton').disabled = true;
+    document.getElementById('doubleDownButton').disabled = true;
+    setTimeout(endGame, 1);
   }
 }
-
 
 function endGame() {
   gameStarted = false;
