@@ -130,8 +130,7 @@ function hit() {
       const playerTotal = calculateTotal(playerHand);
       if (playerTotal > 21) {
         document.getElementById('message').innerText = "You bust, Dealer wins.🤡";
-        setTimeout(() => {
-        endGame();
+        setTimeout(() => { endGame();
       }, 500);
       }
       setTimeout(() => {
