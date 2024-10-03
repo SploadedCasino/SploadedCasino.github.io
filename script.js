@@ -128,13 +128,12 @@ function hit() {
 
     dealCard(playerHand[playerHand.length - 1], 'player').then(() => {
       const playerTotal = calculateTotal(playerHand);
-      if (playerTotal > 21) {
-        document.getElementById('message').innerText = "You bust, Dealer wins.🤡";
-        setTimeout(() => { endGame();
-      }, 500);
-      }
       setTimeout(() => {
         document.getElementById('hitButton').disabled = false;
+        if (playerTotal > 21) {
+          document.getElementById('message').innerText = "You bust, Dealer wins.🤡";
+          endGame();
+        }
       }, 500);
     });
   }
