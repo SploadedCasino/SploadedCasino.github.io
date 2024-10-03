@@ -19,6 +19,7 @@ function clearBet() {
     playerBet = 0; 
     updateBalance(); 
     document.getElementById('clearbetButton').disabled = true;
+    document.getElementById('startButton').disabled = true;
   }
 }
 
