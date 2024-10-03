@@ -6,9 +6,11 @@ let gameStarted = false;
 let highScore = 1000;
 let deck = [];
 const numberOfDecks = 8;
+let canDoubleDown = false;
 
 function updateBalance() {
   document.getElementById('playerBalance').innerText = `Balance: $${playerBalance}`;
+  document.getElementById('playerBetAmount').innerText = `Bet: $${playerBet}`;
 }
 
 function clearBet() {
@@ -36,6 +38,8 @@ function placeBet(amount) {
 function startGame() {
   if (playerBet > 0 && !gameStarted) {
     gameStarted = true;
+    canDoubleDown = true;
+    document.getElementById('doubleDownButton').disabled = false;
     const dealerLabel = document.getElementById('dealerLabel');
     const playerLabel = document.getElementById('playerLabel');
     const message = document.getElementById('message');
@@ -130,15 +134,40 @@ function hit() {
       const playerTotal = calculateTotal(playerHand);
       setTimeout(() => {
         document.getElementById('hitButton').disabled = false;
+
         if (playerTotal > 21) {
           document.getElementById('message').innerText = "You bust, Dealer wins.🤡";
           endGame();
+        }
+        if (playerHand.length > 2) {
+          document.getElementById('doubleDownButton').disabled = true;
         }
       }, 500);
     });
   }
 }
+function doubleDown() {
+  if (canDoubleDown && playerBalance >= playerBet) {
+    playerBalance -= playerBet;
+    playerBet *= 2;
+    updateBalance();
+    document.getElementById('doubleDownButton').disabled = true;
+    document.getElementById('hitButton').disabled = true;
+    playerHand.push(drawCard());
+    dealCard(playerHand[playerHand.length - 1], 'player').then(() => {
+      const playerTotal = calculateTotal(playerHand);
 
+      if (playerTotal > 21) {
+        document.getElementById('message').innerText = "You bust, Dealer wins.🤡";
+        endGame();
+      } else {
+        stand();
+      }
+    });
+  } else {
+    alert("Insufficient balance to double down.");
+  }
+}
 function dealCard(card, player, isHidden = false) {
   return new Promise(resolve => {
     const cardDiv = document.createElement('img');
@@ -217,11 +246,13 @@ function checkForBlackjack() {
     document.getElementById('message').innerText = "Blackjack! You win!🤑";
     playerBalance += Math.round(playerBet * 2.5);
     updateHighScore();
+    document.getElementById('doubleDownButton').disabled = true;
     endGame();
   } else if (dealerTotal === 21) {
     document.getElementById('message').innerText = "Dealer has Blackjack! You lose.🥶";
     document.getElementById('hitButton').disabled = true;
     document.getElementById('standButton').disabled = true;
+    document.getElementById('doubleDownButton').disabled = true;
     setTimeout(endGame, 1);
   }
 }
@@ -230,6 +261,7 @@ function endGame() {
   gameStarted = false;
   document.getElementById('hitButton').disabled = true;
   document.getElementById('standButton').disabled = true;
+  document.getElementById('doubleDownButton').disabled = true;
 
   renderHands(true);
   const dealerCards = document.querySelectorAll('#dealerCards .card');
@@ -255,6 +287,7 @@ function endGame() {
     updateBalance();
     document.getElementById('startButton').disabled = true;
     document.getElementById('clearbetButton').disabled = true;
+    document.getElementById('doubleDownButton').disabled = true;
 
     document.getElementById('dealerLabel').style.display = 'none';
     document.getElementById('playerLabel').style.display = 'none';
