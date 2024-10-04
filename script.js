@@ -261,7 +261,12 @@ function calculateTotal(hand) {
 function checkForBlackjack() {
   const playerTotal = calculateTotal(playerHand);
   const dealerTotal = calculateTotal(dealerHand);
-  if (playerTotal === 21) {
+   if (playerTotal === 21 && dealerTotal === 21) {
+    document.getElementById('message').innerText = "Both have Blackjack! It's a push.🤝";
+    playLoseSound();
+    document.getElementById('doubleDownButton').disabled = true;
+    endGame();
+  } else if (playerTotal === 21) {
     document.getElementById('message').innerText = "Blackjack! You win!🤑";
     playWinSound();
     playerBalance += Math.round(playerBet * 2.5);
