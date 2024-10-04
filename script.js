@@ -128,9 +128,9 @@ function getCardName(value) {
 
 function hit() {
   if (gameStarted) {
+    document.getElementById('doubleDownButton').disabled = true;
     document.getElementById('hitButton').disabled = true;
     playerHand.push(drawCard());
-    document.getElementById('doubleDownButton').disabled = true;
     dealCard(playerHand[playerHand.length - 1], 'player').then(() => {
       const playerTotal = calculateTotal(playerHand);
       setTimeout(() => {
