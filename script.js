@@ -133,7 +133,6 @@ function hit() {
 
     dealCard(playerHand[playerHand.length - 1], 'player').then(() => {
       const playerTotal = calculateTotal(playerHand);
-      document.getElementById('doubleDownButton').disabled = true;
       setTimeout(() => {
         document.getElementById('hitButton').disabled = false;
 
@@ -144,6 +143,7 @@ function hit() {
         if (playerHand.length > 2) {
         }
       }, 500);
+      document.getElementById('doubleDownButton').disabled = true;
     });
   }
 }
