@@ -288,7 +288,6 @@ function endGame() {
   document.getElementById('hitButton').disabled = true;
   document.getElementById('standButton').disabled = true;
   document.getElementById('doubleDownButton').disabled = true;
-  saveGameState();
   renderHands(true);
   const dealerCards = document.querySelectorAll('#dealerCards .card');
   const playerCards = document.querySelectorAll('#playerCards .card');
@@ -317,6 +316,7 @@ function endGame() {
     betButtons.forEach(button => button.disabled = false);
     checkForBankruptcy();
   }, 5000);
+  saveGameState();
 }
 
 function updateHighScore() {
