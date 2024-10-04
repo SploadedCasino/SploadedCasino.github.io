@@ -1,1 +1,1 @@
-Sploaded-Casino.github.io
+SploadedCasino.github.io
