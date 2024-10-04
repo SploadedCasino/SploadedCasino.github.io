@@ -372,6 +372,7 @@ function resetBalance() {
   playerBalance = 500;
   playerBet = 0;
   updateBalance();
+  saveGameState();
   document.getElementById('message').innerHTML = '';
 }
 
