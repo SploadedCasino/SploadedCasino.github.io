@@ -10,24 +10,24 @@
         <loc>https://sploadedcasino.github.io/about/index.html</loc>
         <lastmod>2024-10-04</lastmod>
         <changefreq>always</changefreq>
-        <priority>0.5</priority>
+        <priority>1.0</priority>
     </url>
     <url>
         <loc>https://sploadedcasino.github.io/blackjack/index.html</loc>
         <lastmod>2024-10-04</lastmod>
         <changefreq>always</changefreq>
-        <priority>0.8</priority>
+        <priority>1.0</priority>
     </url>
     <url>
         <loc>https://sploadedcasino.github.io/plinko/index.html</loc>
         <lastmod>2024-10-04</lastmod>
         <changefreq>always</changefreq>
-        <priority>0.8</priority>
+        <priority>1.0</priority>
     </url>
     <url>
         <loc>https://sploadedcasino.github.io/roulette/index.html</loc>
         <lastmod>2024-10-04</lastmod>
         <changefreq>always</changefreq>
-        <priority>0.8</priority>
+        <priority>1.0</priority>
     </url>
 </urlset>
