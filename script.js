@@ -130,7 +130,7 @@ function hit() {
   if (gameStarted) {
     document.getElementById('hitButton').disabled = true;
     playerHand.push(drawCard());
-
+    document.getElementById('doubleDownButton').disabled = true;
     dealCard(playerHand[playerHand.length - 1], 'player').then(() => {
       const playerTotal = calculateTotal(playerHand);
       setTimeout(() => {
@@ -143,7 +143,6 @@ function hit() {
         if (playerHand.length > 2) {
         }
       }, 500);
-      document.getElementById('doubleDownButton').disabled = true;
     });
   }
 }
