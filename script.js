@@ -49,9 +49,18 @@ function placeBet(amount) {
       updateBalance();
       document.getElementById('clearbetButton').disabled = false;
     } else {
-      alert("Insufficient balance for this bet.");
+      showCustomAlert("You stupid brokie 🤡😂");
     }
   }
+}
+
+function showCustomAlert(message) {
+  document.getElementById('alertMessage').innerText = message;
+  document.getElementById('customAlert').style.display = 'flex';
+}
+
+function closeCustomAlert() {
+  document.getElementById('customAlert').style.display = 'none';
 }
 
 function startGame() {
@@ -182,7 +191,7 @@ function doubleDown() {
       }
     });
   } else {
-    alert("Insufficient balance to double down.");
+    showCustomAlert("You stupid brokie 🤡😂");
   }
 }
 function dealCard(card, player, isHidden = false) {
