@@ -305,8 +305,6 @@ function endGame() {
     document.getElementById('playerCards').innerHTML = '';
     document.getElementById('dealerCards').innerHTML = '';
     document.getElementById('message').innerText = '';
-    playerBet = 0;
-    updateBalance();
     document.getElementById('startButton').disabled = true;
     document.getElementById('clearbetButton').disabled = true;
     document.getElementById('doubleDownButton').disabled = true;
@@ -316,7 +314,9 @@ function endGame() {
     betButtons.forEach(button => button.disabled = false);
     checkForBankruptcy();
   }, 5000);
+  playerBet = 0;
   saveGameState();
+  updateBalance();
 }
 
 function updateHighScore() {
@@ -343,9 +343,6 @@ document.getElementById('bettingArea').addEventListener('click', function() {
 function saveGameState() {
   const gameState = {
     playerBalance: playerBalance,
-    playerHand: playerHand,
-    dealerHand: dealerHand,
-    gameStarted: gameStarted,
     playerBet: playerBet,
     highScore: highScore
   };
@@ -358,16 +355,15 @@ function loadGameState() {
     const gameState = JSON.parse(savedState);
     playerBalance = gameState.playerBalance;
     highScore = gameState.highScore;
-    playerHand = gameState.playerHand;
-    dealerHand = gameState.dealerHand;
-    gameStarted = gameState.gameStarted;
     playerBet = gameState.playerBet;
     updateBalance();
     document.getElementById('highScore').innerText = `High Score: $${highScore}`;
-    renderHands(true);
-    if (gameStarted) {
-      document.getElementById('hitButton').disabled = false;
-      document.getElementById('standButton').disabled = false;
+    gameStarted = false;
+    document.getElementById('hitButton').disabled = true;
+    document.getElementById('standButton').disabled = true;
+    if (playerBet > 0) {
+      document.getElementById('startButton').disabled = false;
+    } else {
       document.getElementById('startButton').disabled = true;
     }
   }
