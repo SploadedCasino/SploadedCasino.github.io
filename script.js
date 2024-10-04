@@ -7,7 +7,25 @@ let highScore = 1000;
 let deck = [];
 const numberOfDecks = 8;
 let canDoubleDown = false;
+const winSound = new Audio('sounds/win.mp3');
+winSound.preload = 'auto';
+const loseSound = new Audio('sounds/lose.mp3');
+loseSound.preload = 'auto';
+const startSound = new Audio('sounds/start.mp3');
+startSound.preload = 'auto';
 
+function playWinSound() {
+  winSound.play();
+}
+function playLoseSound() {
+  loseSound.play();
+}
+function playStartSound() {
+  startSound.play();
+}
+function playBetSound() {
+  betSound.play();
+}
 function updateBalance() {
   document.getElementById('playerBalance').innerText = `Balance: $${playerBalance}`;
   document.getElementById('playerBetAmount').innerText = `Bet: $${playerBet}`;
@@ -38,26 +56,23 @@ function placeBet(amount) {
 
 function startGame() {
   if (playerBet > 0 && !gameStarted) {
+    playStartSound();
     gameStarted = true;
     canDoubleDown = true;
     document.getElementById('doubleDownButton').disabled = false;
     const dealerLabel = document.getElementById('dealerLabel');
     const playerLabel = document.getElementById('playerLabel');
     const message = document.getElementById('message');
-
     dealerLabel.style.display = 'block';
     dealerLabel.classList.remove('fade-out');
     playerLabel.style.display = 'block';
     playerLabel.classList.remove('fade-out');
     message.classList.remove('fade-out');
-
     if (deck.length < numberOfDecks * 52 * 0.25) {
       deck = shuffleDeck(createDeck());
     }
-
     playerHand = [drawCard(), drawCard()];
     dealerHand = [drawCard(), drawCard()];
-
     dealInitialCards();
     document.getElementById('hitButton').disabled = false;
     document.getElementById('standButton').disabled = false;
@@ -138,6 +153,7 @@ function hit() {
 
         if (playerTotal > 21) {
           document.getElementById('message').innerText = "You bust, Dealer wins.🤡";
+          playLoseSound();
           endGame();
         }
         if (playerHand.length > 2) {
@@ -159,6 +175,7 @@ function doubleDown() {
 
       if (playerTotal > 21) {
         document.getElementById('message').innerText = "You bust, Dealer wins.🤡";
+        playLoseSound();
         endGame();
       } else {
         stand();
@@ -208,12 +225,15 @@ function stand() {
     if (dealerTotal > 21 || playerTotal > dealerTotal) {
       document.getElementById('message').innerText = "You win!🤑";
       playerBalance += playerBet * 2;
+      playWinSound();
       updateHighScore();
     } else if (playerTotal < dealerTotal) {
       document.getElementById('message').innerText = "Dealer wins.🤡";
+      playLoseSound();
     } else {
       document.getElementById('message').innerText = "It's a tie.🥶";
       playerBalance += playerBet;
+      playLoseSound();
     }
     endGame();
   }
@@ -241,15 +261,16 @@ function calculateTotal(hand) {
 function checkForBlackjack() {
   const playerTotal = calculateTotal(playerHand);
   const dealerTotal = calculateTotal(dealerHand);
-
   if (playerTotal === 21) {
     document.getElementById('message').innerText = "Blackjack! You win!🤑";
+    playWinSound();
     playerBalance += Math.round(playerBet * 2.5);
     updateHighScore();
     document.getElementById('doubleDownButton').disabled = true;
     endGame();
   } else if (dealerTotal === 21) {
     document.getElementById('message').innerText = "Dealer has Blackjack! You lose.🥶";
+    playLoseSound();
     document.getElementById('hitButton').disabled = true;
     document.getElementById('standButton').disabled = true;
     document.getElementById('doubleDownButton').disabled = true;
@@ -336,7 +357,6 @@ function loadGameState() {
     dealerHand = gameState.dealerHand;
     gameStarted = gameState.gameStarted;
     playerBet = gameState.playerBet;
-
     updateBalance();
     document.getElementById('highScore').innerText = `High Score: $${highScore}`;
     renderHands(true);
@@ -380,4 +400,7 @@ window.onload = function() {
   loadHighScore();
   loadGameState();
   checkForBankruptcy();
+  startSound.load();
+  winSound.load();
+  loseSound.load();
 }
