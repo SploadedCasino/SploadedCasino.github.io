@@ -262,12 +262,10 @@ function endGame() {
   document.getElementById('hitButton').disabled = true;
   document.getElementById('standButton').disabled = true;
   document.getElementById('doubleDownButton').disabled = true;
-
   renderHands(true);
   const dealerCards = document.querySelectorAll('#dealerCards .card');
   const playerCards = document.querySelectorAll('#playerCards .card');
   dealerCards[0].classList.add('flip');
-
   setTimeout(() => {
     dealerCards.forEach(card => card.classList.add('fade-out'));
     playerCards.forEach(card => card.classList.add('fade-out'));
@@ -275,7 +273,6 @@ function endGame() {
     document.getElementById('dealerLabel').classList.add('fade-out');
     document.getElementById('playerLabel').classList.add('fade-out');
   }, 4000);
-
   setTimeout(() => {
     playerHand = [];
     dealerHand = [];
@@ -283,15 +280,12 @@ function endGame() {
     document.getElementById('dealerCards').innerHTML = '';
     document.getElementById('message').innerText = '';
     playerBet = 0;
-
     updateBalance();
     document.getElementById('startButton').disabled = true;
     document.getElementById('clearbetButton').disabled = true;
     document.getElementById('doubleDownButton').disabled = true;
-
     document.getElementById('dealerLabel').style.display = 'none';
     document.getElementById('playerLabel').style.display = 'none';
-
     let betButtons = document.querySelectorAll('.placebetButton');
     betButtons.forEach(button => button.disabled = false);
     checkForBankruptcy();
@@ -358,19 +352,24 @@ function checkForBankruptcy() {
   if (playerBalance <= 0) {
     const messageDiv = document.getElementById('message');
     messageDiv.innerText = "You lost all your money! Play again?";
+    messageDiv.classList.remove('fade-out');
     const yesButton1 = document.createElement('button');
     yesButton1.innerText = "Yes";
     yesButton1.onclick = () => resetBalance();
     messageDiv.appendChild(yesButton1);
     const yesButton2 = document.createElement('button');
     yesButton2.innerText = "No";
-    yesButton2.onclick = () => messageDiv.innerHTML = 'Game over!';
+    yesButton2.onclick = () => resetBalance();
     messageDiv.appendChild(yesButton2);
+    document.getElementById('hitButton').disabled = true;
+    document.getElementById('standButton').disabled = true;
+    document.getElementById('doubleDownButton').disabled = true;
   }
 }
 
+
 function resetBalance() {
-  playerBalance = 1000;
+  playerBalance = 500;
   playerBet = 0;
   updateBalance();
   document.getElementById('message').innerHTML = '';
