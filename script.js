@@ -370,16 +370,23 @@ function loadGameState() {
 
 function checkForBankruptcy() {
   if (playerBalance <= 0) {
+    playLoseSound();
     const messageDiv = document.getElementById('message');
     messageDiv.innerText = "You lost all your money! Play again?";
     messageDiv.classList.remove('fade-out');
     const yesButton1 = document.createElement('button');
     yesButton1.innerText = "Yes";
-    yesButton1.onclick = () => resetBalance();
+    yesButton1.onclick = () => {
+      playStartSound();
+      resetBalance();
+    }
     messageDiv.appendChild(yesButton1);
     const yesButton2 = document.createElement('button');
     yesButton2.innerText = "No";
-    yesButton2.onclick = () => resetBalance();
+    yesButton2.onclick = () => {
+      playStartSound();
+      resetBalance();
+    }
     messageDiv.appendChild(yesButton2);
     document.getElementById('hitButton').disabled = true;
     document.getElementById('standButton').disabled = true;
