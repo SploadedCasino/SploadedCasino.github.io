@@ -372,3 +372,51 @@ h3 {
   text-decoration: none;
   cursor: pointer;
 }
+.help-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  z-index: 1001;
+}
+.help-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  z-index: 1001;
+}
+.help-circle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.help-circle:hover {
+  background-color: #0056b3;
+}
