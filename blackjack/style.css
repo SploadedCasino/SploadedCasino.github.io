@@ -355,9 +355,9 @@ h3 {
   background-color: #fff;
   margin: 100px auto;
   padding: 20px;
-  max-height: 80vh;
   border: 1px solid #888;
   width: 300px;
+  max-height: 80vh;
   overflow-y: auto;
   border-radius: 8px;
 }
