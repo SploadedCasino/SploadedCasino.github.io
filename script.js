@@ -22,6 +22,16 @@ function closeHelp() {
   document.getElementById('helpModal').style.display = 'none';
 }
 
+window.onclick = function(event) {
+  const modal = document.getElementById('helpModal');
+  const modalContent = document.querySelector('.modal-content');
+  
+  // Check if the click was outside the modal content
+  if (event.target === modal) {
+    closeHelpModal();
+  }
+};
+
 function playWinSound() {
   winSound.play();
 }
