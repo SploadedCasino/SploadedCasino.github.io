@@ -356,11 +356,13 @@ h3 {
   padding: 20px;
   border: 1px solid #888;
   width: 300px;
-  margin: 5% auto;
-  max-height: 90vh;
+  margin: 10% auto;
+  max-height: 80vh;
   overflow-y: auto;
   border-radius: 8px;
+  box-sizing: border-box;
 }
+
 
 
 .close-button {
