@@ -353,14 +353,15 @@ h3 {
 
 .modal-content {
   background-color: #fff;
-  margin: 100px auto;
   padding: 20px;
   border: 1px solid #888;
   width: 300px;
-  max-height: 80vh;
+  margin: 5% auto;
+  max-height: 90vh;
   overflow-y: auto;
   border-radius: 8px;
 }
+
 
 .close-button {
   color: #aaa;
