@@ -22,6 +22,14 @@ function closeHelpModal() {
   document.getElementById('helpModal').style.display = 'none';
 }
 
+function showHelp() {
+  document.getElementById('helpModal').style.display = 'flex';
+}
+
+function closeHelp() {
+  document.getElementById('helpModal').style.display = 'none';
+}
+
 window.onclick = function(event) {
   const modal = document.getElementById('helpModal');
   if (event.target === modal) {
