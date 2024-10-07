@@ -14,29 +14,20 @@ loseSound.preload = 'auto';
 const startSound = new Audio('sounds/start.mp3');
 startSound.preload = 'auto';
 
-function showHelp() {
+function showHelpModal() {
   document.getElementById('helpModal').style.display = 'flex';
-}
-
-function closeHelp() {
-  document.getElementById('helpModal').style.display = 'none';
 }
 
 function closeHelpModal() {
   document.getElementById('helpModal').style.display = 'none';
 }
 
-function showHelpModal() {
-  document.getElementById('helpModal').style.display = 'flex';
-}
 window.onclick = function(event) {
   const modal = document.getElementById('helpModal');
-  const modalContent = document.querySelector('.modal-content');
   if (event.target === modal) {
     closeHelpModal();
   }
 };
-
 
 function playWinSound() {
   winSound.play();
