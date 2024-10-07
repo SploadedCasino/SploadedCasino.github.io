@@ -14,6 +14,14 @@ loseSound.preload = 'auto';
 const startSound = new Audio('sounds/start.mp3');
 startSound.preload = 'auto';
 
+function showHelp() {
+  document.getElementById('helpModal').style.display = 'flex';
+}
+
+function closeHelp() {
+  document.getElementById('helpModal').style.display = 'none';
+}
+
 function playWinSound() {
   winSound.play();
 }
