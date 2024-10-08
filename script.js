@@ -47,15 +47,14 @@ function preloadImages() {
 }
 
 window.onclick = function(event) {
-  var modal = document.getElementById("helpModal");
-  if (event.target == modal) {
+  var helpModal = document.getElementById("helpModal");
+  var customAlert = document.getElementById("customAlert");
+  
+  if (event.target == helpModal) {
     closeHelpModal();
   }
-}
-
-window.onclick = function(event) {
-  const modal = document.getElementById('customAlert');
-  if (event.target === modal) {
+  
+  if (event.target === customAlert) {
     closeCustomAlert();
   }
 };
