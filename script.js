@@ -41,6 +41,11 @@ function clearBet() {
   }
 }
 
+function preloadImages() {
+  const cardBack = new Image();
+  cardBack.src = 'cards/back.png'; 
+}
+
 window.onclick = function(event) {
   const modal = document.getElementById('customAlert');
   if (event.target === modal) {
@@ -433,6 +438,7 @@ window.onload = function() {
   loadHighScore();
   loadGameState();
   checkForBankruptcy();
+  preloadImages();
   startSound.load();
   winSound.load();
   loseSound.load();
