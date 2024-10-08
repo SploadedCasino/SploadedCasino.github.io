@@ -115,6 +115,12 @@ footer {
     margin-top: auto;
 }
 
+footer a {
+  color: white;
+  text-align: right;
+  margin: 0 10px;
+}
+
 .game-selection {
     text-align: center;
     margin: 50px auto;
