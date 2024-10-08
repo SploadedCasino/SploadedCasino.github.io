@@ -50,8 +50,16 @@ window.onclick = function(event) {
   const modal = document.getElementById('customAlert');
   if (event.target === modal) {
     closeCustomAlert();
+    
   }
 };
+
+window.onclick = function(event) {
+  var modal = document.getElementById("helpModal");
+  if (event.target == modal) {
+    closeHelpModal();
+  }
+}
 
 function placeBet(amount) {
   if (!gameStarted) {
@@ -65,6 +73,15 @@ function placeBet(amount) {
     }
   }
 }
+
+function openHelp() {
+  document.getElementById('helpModal').style.display = 'block';
+}
+
+function closeHelpModal() {
+  document.getElementById('helpModal').style.display = 'none';
+}
+
 function allIn() {
   if (!gameStarted) {
     playerBet = playerBalance;
