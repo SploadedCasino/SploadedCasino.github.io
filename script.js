@@ -60,7 +60,14 @@ function placeBet(amount) {
     }
   }
 }
-
+function allIn() {
+  if (!gameStarted) {
+    playerBet = playerBalance;
+    playerBalance = 0;
+    updateBalance();
+    document.getElementById('clearbetButton').disabled = false;
+  }
+}
 function showCustomAlert(message) {
   document.getElementById('alertMessage').innerText = message;
   document.getElementById('customAlert').style.display = 'flex';
@@ -75,7 +82,9 @@ function startGame() {
     playStartSound();
     gameStarted = true;
     canDoubleDown = true;
-    document.getElementById('doubleDownButton').disabled = false;
+    if (playerBalance > 0) {
+      document.getElementById('doubleDownButton').disabled = false;
+    }
     const dealerLabel = document.getElementById('dealerLabel');
     const playerLabel = document.getElementById('playerLabel');
     const message = document.getElementById('message');
