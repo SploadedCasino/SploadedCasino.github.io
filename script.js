@@ -1,3 +1,4 @@
+
 let playerBalance = 1000;
 let playerBet = 0;
 let playerHand = [];
@@ -48,12 +49,17 @@ function preloadImages() {
 
 window.onclick = function(event) {
   var modal = document.getElementById("helpModal");
-  const modal = document.getElementById('customAlert');
   if (event.target == modal) {
     closeHelpModal();
-    closeCustomAlert();
   }
 }
+
+window.onclick = function(event) {
+  const modal = document.getElementById('customAlert');
+  if (event.target === modal) {
+    closeCustomAlert();
+  }
+};
 
 function placeBet(amount) {
   if (!gameStarted) {
