@@ -14,29 +14,6 @@ loseSound.preload = 'auto';
 const startSound = new Audio('sounds/start.mp3');
 startSound.preload = 'auto';
 
-function showHelpModal() {
-  document.getElementById('helpModal').style.display = 'flex';
-}
-
-function closeHelpModal() {
-  document.getElementById('helpModal').style.display = 'none';
-}
-
-function showHelp() {
-  document.getElementById('helpModal').style.display = 'flex';
-}
-
-function closeHelp() {
-  document.getElementById('helpModal').style.display = 'none';
-}
-
-window.onclick = function(event) {
-  const modal = document.getElementById('helpModal');
-  if (event.target === modal) {
-    closeHelpModal();
-  }
-};
-
 function playWinSound() {
   winSound.play();
 }
@@ -63,6 +40,13 @@ function clearBet() {
     document.getElementById('startButton').disabled = true;
   }
 }
+
+window.onclick = function(event) {
+  const modal = document.getElementById('customAlert');
+  if (event.target === modal) {
+    closeCustomAlert();
+  }
+};
 
 function placeBet(amount) {
   if (!gameStarted) {
