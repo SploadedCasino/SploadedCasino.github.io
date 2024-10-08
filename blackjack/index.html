@@ -21,9 +21,7 @@
     <section class="game-selection">
     <div class="table-wrapper">
         <div class="table">
-            <div id="titleSection">
-                <h1>Classic Blackjack</h1>
-            </div>
+            <h1 id="blackjackTitle">Classic Blackjack</h1>
             <div id="balanceContainer">
                 <span id="playerBalance">Balance: $1000</span>
                 <span id="playerBetAmount">Bet: $0</span>
@@ -38,6 +36,7 @@
                 <button class="placebetButton" onclick="placeBet(1000)">Bet $1000</button>
                 <button class="placebetButton" onclick="placeBet(10000)">Bet $10,000</button>
                 <button class="placebetButton" onclick="placeBet(100000)">Bet $100,000</button>
+                <button class="placebetButton" onclick="allIn()"">All In</button>
                 <button id="clearbetButton" onclick="clearBet()" disabled class="clear-bet-button">Clear Bet</button>
             </div>
             <div id="gameArea">
