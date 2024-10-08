@@ -1,4 +1,3 @@
-
 let playerBalance = 1000;
 let playerBet = 0;
 let playerHand = [];
