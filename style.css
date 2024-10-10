@@ -39,6 +39,21 @@ html, body {
     margin-bottom: 15px;
 }
 
+#blackjackTitle {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+  font-family: 'Arial', sans-serif;
+}
+
+#titleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
 .about-me a {
     color: #ffcc00;
     text-decoration: none;
