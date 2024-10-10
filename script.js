@@ -38,6 +38,7 @@ function clearBet() {
     updateBalance(); 
     document.getElementById('clearbetButton').disabled = true;
     document.getElementById('startButton').disabled = true;
+    document.getElementById('allinButton').disabled = false;
   }
 }
 
@@ -86,6 +87,7 @@ function allIn() {
     playerBalance = 0;
     updateBalance();
     document.getElementById('clearbetButton').disabled = false;
+    document.getElementById('allinButton').disabled = true;
   }
 }
 function showCustomAlert(message) {
