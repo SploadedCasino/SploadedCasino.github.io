@@ -8,65 +8,9 @@ body {
     margin: 0;
     padding: 0;
     overflow: auto;
-    overflow-x: auto;
+    overflow-x: hidden;
     width: 100vw;
     box-sizing: border-box;
-}
-
-html, body {
-    overflow-x: hidden;
-}
-
-.about-me {
-    max-width: 800px;
-    margin: 50px auto;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-    color: white;
-}
-
-.about-me h1 {
-    text-align: center;
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.about-me p {
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-#blackjackTitle {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 2.5rem;
-  color: white;
-  text-shadow: 2px 2px 4px black;
-  font-family: 'Arial', sans-serif;
-}
-
-#titleContainer {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.about-me a {
-    color: #ffcc00;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.about-me a:hover {
-    color: #00e604;
-}
-
-main {
-    flex: 1;
-    padding-bottom: 5px;
 }
 
 header {
@@ -88,52 +32,9 @@ header .logo img {
     align-items: center;
 }
 
-h1 {
-    font-size: 26px;
-    margin: 10px 0;
-}
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 30px;
-    padding: 5px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-nav ul li a:hover {
-    background-color: #ffcc00;
-    color: #333;
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: relative;
-    width: 100%;
-    bottom: 0;
-    margin-top: auto;
-}
-
-footer a {
-  color: white;
-  text-align: right;
-  margin: 0 10px;
+main {
+    flex: 1;
+    padding-bottom: 5px;
 }
 
 .game-selection {
@@ -142,18 +43,14 @@ footer a {
     color: white;
     padding: 0 30px;
 }
-.game-wrapper {
-    padding: 0 20px;
-}
+
 .game-selection h2 {
     font-size: 30px;
     margin-bottom: 20px;
 }
 
-.game-options {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+.game-wrapper {
+    padding: 0 20px;
 }
 
 .game-container {
@@ -162,51 +59,6 @@ footer a {
     gap: 40px;
     max-width: calc(100% - 40px);
     margin: 0 auto;
-}
-
-.game-button {
-    display: block;
-    margin-top: 10px;
-    background-color: #ffcc00;
-    color: black;
-    padding: 10px 0;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.cardss:hover {
-    transform: scale(1.09);
-}
-.table-wrapper {
-    padding: 0 20px;
-}
-.table {
-    text-align: center;
-    margin: 20px auto;
-    max-width: 700px;
-    width: 100%;
-    border: 2px solid white;
-    border-radius: 10px;
-    padding: 20px;
-    background-color: rgba(0, 128, 0, 0.8);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-    box-sizing: border-box;
-}
-
-.cards {
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-    position: relative;
-}
-
-.card {
-    width: 100px;
-    height: 130px;
-    margin: 0 5px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .cardss {
@@ -220,6 +72,10 @@ footer a {
     transition: transform 0.3s ease;
     border-radius: 20px;
     border: 10px solid white;
+}
+
+.cardss:hover {
+    transform: scale(1.09);
 }
 
 @media screen and (max-width: 675px) {
@@ -237,62 +93,19 @@ footer a {
     }
 }
 
-button {
-    background-color: #ffcc00;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    font-size: 16px;
-    margin: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #00e604;
-}
-
-button:disabled {
-    background-color: #ccc;
-    color: #666;
-    border: 1px solid #999;
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-.outcome {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 50px;
+footer {
+    background-color: #333;
     color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-    z-index: 10;
-}
-
-#balanceContainer {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 500px;
-    margin: 10px auto; 
-    font-size: 18px;
-    color: #fff;
-}
-
-#playerBalance, #currentBet {
-    margin: 0 10px;
-}
-
-#message {
-    font-size: 50px;
-}
-
-h3 {
     text-align: center;
-    color: #fff;
-    font-size: 24px;
-    margin: 10px 0;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    margin-top: auto;
+}
+
+footer a {
+  color: white;
+  text-align: right;
+  margin: 0 10px;
 }
