@@ -1,0 +1,92 @@
+body {
+  background-color: #121212;
+  background-size: cover;
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  overflow-x: hidden;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.about-me {
+  max-width: 800px;
+  margin: 50px auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  color: white;
+}
+
+.about-me h1 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.about-me p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.about-me a {
+  color: #ffcc00;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.about-me a:hover {
+  color: #00e604;
+}
+
+h1 {
+  font-size: 26px;
+  margin: 10px 0;
+}
+
+main {
+  flex: 1;
+  padding-bottom: 5px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+header .logo {
+  margin: auto;
+}
+
+header .logo img {
+  width: 300px;
+  cursor: pointer;
+  align-items: center;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  width: 100%;
+  bottom: 0;
+  margin-top: auto;
+}
+
+footer a {
+  color: white;
+  text-align: right;
+  margin: 0 10px;
+}
