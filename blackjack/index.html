@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Blackjack</title>
     <meta name="description" content="This is a simple Blackjack game with more to come">
-    <meta name="keywords" content="Uploaded Casino, UploadedCasino, Unloaded, Sploaded Casino Blackjack, Sploadedboi, online casino, GitHub casino games, Blackjack GitHub, Roulette GitHub, Plinko GitHub, Sploaded Casino GitHub, Sploaded Casino unblocked, unblocked casino games, unblocked games for school, school unblocked gambling games, Blackjack online, Plinko online, Roulette online, online Blackjack, online Plinko, online Roulette, casino games online, free Blackjack online, free Plinko game, free Roulette game, online gambling GitHub, online gambling unblocked, unblocked gambling games, Sploadedboi casino games, Sploadedboi Blackjack, Sploadedboi Roulette, Sploadedboi Plinko, gambling for school, unblocked gambling games for school, play casino games at school, online gambling unblocked at school, school casino games unblocked, unblocked Blackjack, unblocked Roulette, unblocked Plinko, free online casino games, free online Blackjack, free online Roulette, free online Plinko, school-friendly casino games, GitHub gambling games, Sploaded Casino Blackjack, Sploaded Casino Plinko, Sploaded Casino Roulette, unblocked Blackjack for school, unblocked Roulette for school, unblocked Plinko for school, gambling website GitHub, GitHub-based casino games, free online casino games GitHub, casino games GitHub repository, play casino games online unblocked, Sploaded Casino gambling, GitHub unblocked games, casino games repository GitHub, Blackjack game repository, Plinko game repository, Roulette game repository">
+    <meta name="keywords" content="Sploaded Casino, Blackjack GitHub, unblocked casino games, school gambling games">
     <meta name="author" content="SploadedBoi">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <link rel="shortcut icon" type="image/png" href="../favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack</title>
     <link rel="stylesheet" href="style.css">
     <script type="application/ld+json">
     {
@@ -26,13 +25,11 @@
             <a href="../"><img src="../logo.png" alt="Sploaded Casino Logo"></a>
         </div>
     </header>
-    <main>
-    <section class="game-selection">
-    <div class="table-wrapper">
+    <main class="table-wrapper">
         <div class="table">
             <div id="titleContainer">
-              <h1 id="blackjackTitle">Classic Blackjack</h1>
-              <button id="helpButton" onclick="openHelp()">?</button>
+                <h1 id="blackjackTitle">Classic Blackjack</h1>
+                <button id="helpButton" onclick="openHelp()">?</button>
             </div>
             <div id="balanceContainer">
                 <span id="playerBalance">Balance: $1000</span>
@@ -44,68 +41,33 @@
                 <button class="placebetButton" onclick="placeBet(5)">Bet $5</button>
                 <button class="placebetButton" onclick="placeBet(25)">Bet $25</button>
                 <button class="placebetButton" onclick="placeBet(100)">Bet $100</button>
-                <button class="placebetButton" onclick="placeBet(500)">Bet $500</button>
-                <button class="placebetButton" onclick="placeBet(1000)">Bet $1000</button>
-                <button class="placebetButton" onclick="placeBet(10000)">Bet $10,000</button>
-                <button class="placebetButton" onclick="placeBet(100000)">Bet $100,000</button>
-                <button id="allinButton" class="placebetButton" onclick="allIn()"">All In</button>
-                <button id="clearbetButton" onclick="clearBet()" disabled class="clear-bet-button">Clear Bet</button>
+                <button id="clearbetButton" onclick="clearBet()" disabled>Clear Bet</button>
             </div>
             <div id="gameArea">
                 <div id="dealerLabel" style="display: none;">Dealer Cards</div>
                 <div id="dealerCards" class="cards"></div>
-                <div id="message"></div>
                 <div id="playerLabel" style="display: none;">Player Cards</div>
                 <div id="playerCards" class="cards"></div>
             </div>
             <button id="startButton" onclick="startGame()" disabled>Deal Cards</button>
             <button id="hitButton" onclick="hit()" disabled>Hit</button>
             <button id="standButton" onclick="stand()" disabled>Stand</button>
-            <button id="doubleDownButton" onclick="doubleDown()"disabled>Double Down</button>
+            <button id="doubleDownButton" onclick="doubleDown()" disabled>Double Down</button>
         </div>
-    </div>
-    </section>
     </main>
     <div id="helpModal" class="modal" style="display:none;">
-      <div class="modal-content">
-        <span class="close-button" onclick="closeHelpModal()">&times;</span>
-        <h2>How to Play Blackjack</h2>
-        <p>In Blackjack, your goal is to get a hand value as close to 21 as possible, without exceeding it. You are playing against the dealer.</p>
-        <h3>Card Values</h3>
-        <ul>
-          <li>Number cards (2-10) are worth their face value.</li>
-          <li>Face cards (Jack, Queen, King) are each worth 10.</li>
-          <li>Ace can be worth either 1 or 11, depending on which value helps your hand more.</li>
-        </ul>
-        <h3>How the Game Works</h3>
-        <ol>
-          <li>First, place your bet using the buttons below.</li>
-          <li>Click 'Deal Cards' to start the game.</li>
-          <li>Both you and the dealer receive two cards. One of the dealer's cards is hidden.</li>
-          <li>You can choose to 'Hit' to receive another card, or 'Stand' to keep your hand as it is.</li>
-          <li>If your hand value exceeds 21, you 'bust' and lose the game.</li>
-          <li>Once you stand, the dealer reveals their hidden card and continues to hit until they reach at least 17.</li>
-          <li>The winner is the player with a hand closest to 21 without going over.</li>
-        </ol>
-        <h3>Special Rules</h3>
-        <ul>
-          <li>Blackjack: If your starting hand is an Ace and a 10-value card, you win 2.5x your bet.</li>
-          <li>Dealer Blackjack: If the dealer has blackjack, you lose unless you also have blackjack, in which case it’s a push (draw).</li>
-        </ul>
-      </div>
-    </div>
-    <div id="customAlert" class="modal" style="display:none;">
         <div class="modal-content">
-            <span class="close-button" onclick="closeCustomAlert()">&times;</span>
-            <p id="alertMessage"></p>
+            <span class="close-button" onclick="closeHelpModal()">&times;</span>
+            <h2>How to Play Blackjack</h2>
+            <p>In Blackjack, your goal is to get a hand value as close to 21 as possible, without exceeding it.</p>
         </div>
     </div>
     <script src="../script.js"></script>
     <footer>
         <p>© 2024 SploadedBoi Casino Games. All rights reserved. (Not at all)</p>
-        <a href="../about/" style="color: white; text-align: padding: 10px; right;">About Us</a></li>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nicholas.beaudean@students.mot.k12.de.us" style="color: white; text-align: right;">Contact Us!</a>
-        <a href="https://github.com/SploadedCasino/SploadedCasino.github.io" style="color: white; text-align: right;">Github Repository</a>
+        <a href="../about/" style="color: white;">About Us</a>
+        <a href="mailto:nicholas.beaudean@students.mot.k12.de.us" style="color: white;">Contact Us!</a>
+        <a href="https://github.com/SploadedCasino/SploadedCasino.github.io" style="color: white;">GitHub Repository</a>
     </footer>
 </body>
 </html>
