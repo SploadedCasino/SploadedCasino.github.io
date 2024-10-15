@@ -1,0 +1,18 @@
+User-agent: *
+Disallow: /blackjack/
+Disallow: /plinko/
+Disallow: /roulette/
+Disallow: /about/
+
+Allow: /
+Allow: /blackjack/
+Allow: /plinko/
+Allow: /roulette/
+Allow: /about/
+
+
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*?*
+
+Sitemap: https://sploadedcasino.github.io/sitemap.xml
