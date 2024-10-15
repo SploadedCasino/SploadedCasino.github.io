@@ -25,11 +25,13 @@
             <a href="../"><img src="../logo.png" alt="Sploaded Casino Logo"></a>
         </div>
     </header>
-    <main class="table-wrapper">
+    <main>
+    <section class="game-selection">
+    <div class="table-wrapper">
         <div class="table">
             <div id="titleContainer">
-                <h1 id="blackjackTitle">Classic Blackjack</h1>
-                <button id="helpButton" onclick="openHelp()">?</button>
+              <h1 id="blackjackTitle">Classic Blackjack</h1>
+              <button id="helpButton" onclick="openHelp()">?</button>
             </div>
             <div id="balanceContainer">
                 <span id="playerBalance">Balance: $1000</span>
@@ -41,33 +43,68 @@
                 <button class="placebetButton" onclick="placeBet(5)">Bet $5</button>
                 <button class="placebetButton" onclick="placeBet(25)">Bet $25</button>
                 <button class="placebetButton" onclick="placeBet(100)">Bet $100</button>
-                <button id="clearbetButton" onclick="clearBet()" disabled>Clear Bet</button>
+                <button class="placebetButton" onclick="placeBet(500)">Bet $500</button>
+                <button class="placebetButton" onclick="placeBet(1000)">Bet $1000</button>
+                <button class="placebetButton" onclick="placeBet(10000)">Bet $10,000</button>
+                <button class="placebetButton" onclick="placeBet(100000)">Bet $100,000</button>
+                <button id="allinButton" class="placebetButton" onclick="allIn()"">All In</button>
+                <button id="clearbetButton" onclick="clearBet()" disabled class="clear-bet-button">Clear Bet</button>
             </div>
             <div id="gameArea">
                 <div id="dealerLabel" style="display: none;">Dealer Cards</div>
                 <div id="dealerCards" class="cards"></div>
+                <div id="message"></div>
                 <div id="playerLabel" style="display: none;">Player Cards</div>
                 <div id="playerCards" class="cards"></div>
             </div>
             <button id="startButton" onclick="startGame()" disabled>Deal Cards</button>
             <button id="hitButton" onclick="hit()" disabled>Hit</button>
             <button id="standButton" onclick="stand()" disabled>Stand</button>
-            <button id="doubleDownButton" onclick="doubleDown()" disabled>Double Down</button>
+            <button id="doubleDownButton" onclick="doubleDown()"disabled>Double Down</button>
         </div>
+    </div>
+    </section>
     </main>
     <div id="helpModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close-button" onclick="closeHelpModal()">&times;</span>
+        <h2>How to Play Blackjack</h2>
+        <p>In Blackjack, your goal is to get a hand value as close to 21 as possible, without exceeding it. You are playing against the dealer.</p>
+        <h3>Card Values</h3>
+        <ul>
+          <li>Number cards (2-10) are worth their face value.</li>
+          <li>Face cards (Jack, Queen, King) are each worth 10.</li>
+          <li>Ace can be worth either 1 or 11, depending on which value helps your hand more.</li>
+        </ul>
+        <h3>How the Game Works</h3>
+        <ol>
+          <li>First, place your bet using the buttons below.</li>
+          <li>Click 'Deal Cards' to start the game.</li>
+          <li>Both you and the dealer receive two cards. One of the dealer's cards is hidden.</li>
+          <li>You can choose to 'Hit' to receive another card, or 'Stand' to keep your hand as it is.</li>
+          <li>If your hand value exceeds 21, you 'bust' and lose the game.</li>
+          <li>Once you stand, the dealer reveals their hidden card and continues to hit until they reach at least 17.</li>
+          <li>The winner is the player with a hand closest to 21 without going over.</li>
+        </ol>
+        <h3>Special Rules</h3>
+        <ul>
+          <li>Blackjack: If your starting hand is an Ace and a 10-value card, you win 2.5x your bet.</li>
+          <li>Dealer Blackjack: If the dealer has blackjack, you lose unless you also have blackjack, in which case it’s a push (draw).</li>
+        </ul>
+      </div>
+    </div>
+    <div id="customAlert" class="modal" style="display:none;">
         <div class="modal-content">
-            <span class="close-button" onclick="closeHelpModal()">&times;</span>
-            <h2>How to Play Blackjack</h2>
-            <p>In Blackjack, your goal is to get a hand value as close to 21 as possible, without exceeding it.</p>
+            <span class="close-button" onclick="closeCustomAlert()">&times;</span>
+            <p id="alertMessage"></p>
         </div>
     </div>
     <script src="../script.js"></script>
     <footer>
         <p>© 2024 SploadedBoi Casino Games. All rights reserved. (Not at all)</p>
-        <a href="../about/" style="color: white;">About Us</a>
-        <a href="mailto:nicholas.beaudean@students.mot.k12.de.us" style="color: white;">Contact Us!</a>
-        <a href="https://github.com/SploadedCasino/SploadedCasino.github.io" style="color: white;">GitHub Repository</a>
+        <a href="../about/" style="color: white; text-align: padding: 10px; right;">About Us</a></li>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nicholas.beaudean@students.mot.k12.de.us" style="color: white; text-align: right;">Contact Us!</a>
+        <a href="https://github.com/SploadedCasino/SploadedCasino.github.io" style="color: white; text-align: right;">Github Repository</a>
     </footer>
 </body>
 </html>
