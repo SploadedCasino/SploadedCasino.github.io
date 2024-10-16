@@ -83,13 +83,16 @@ function closeHelpModal() {
 
 function allIn() {
   if (!gameStarted) {
-    playerBet = playerBalance;
-    playerBalance = 0;
-    updateBalance();
-    document.getElementById('clearbetButton').disabled = false;
-    document.getElementById('allinButton').disabled = true;
+    if (playerBalance > 0) {
+      playerBet += playerBalance;
+      playerBalance = 0;
+      updateBalance();
+      document.getElementById('clearbetButton').disabled = false;
+      document.getElementById('allinButton').disabled = true;
+    }
   }
 }
+
 function showCustomAlert(message) {
   document.getElementById('alertMessage').innerText = message;
   document.getElementById('customAlert').style.display = 'flex';
