@@ -1,4 +1,2 @@
 User-agent: *
-Disallow: /private/
-Disallow: /tmp/
-Allow: /public/
+Disallow:
