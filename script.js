@@ -89,7 +89,8 @@ function allIn() {
       updateBalance();
       document.getElementById('clearbetButton').disabled = false;
       document.getElementById('allinButton').disabled = true;
-    }
+    } else {
+      document.getElementById('allinbetButton').disabled = true;
   }
 }
 
