@@ -86,13 +86,12 @@ function closeHelpModal() {
 
 function allIn() {
   if (!gameStarted) {
-    playerBet = playerBalance;
-    playerBalance = 0;
-    updateBalance();
-    document.getElementById('clearbetButton').disabled = false;
+    const amount = playerBalance;
+    placeBet(amount);
     document.getElementById('allinButton').disabled = true;
   }
 }
+
 
 function showCustomAlert(message) {
   document.getElementById('alertMessage').innerText = message;
