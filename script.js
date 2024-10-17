@@ -50,11 +50,11 @@ function preloadImages() {
 window.onclick = function(event) {
   var helpModal = document.getElementById("helpModal");
   var customAlert = document.getElementById("customAlert");
-  
+
   if (event.target == helpModal) {
     closeHelpModal();
   }
-  
+
   if (event.target === customAlert) {
     closeCustomAlert();
   }
@@ -83,14 +83,11 @@ function closeHelpModal() {
 
 function allIn() {
   if (!gameStarted) {
-    if (playerBalance > 0) {
-      playerBet += playerBalance;
-      playerBalance = 0;
-      updateBalance();
-      document.getElementById('clearbetButton').disabled = false;
-      document.getElementById('allinButton').disabled = true;
-    } else {
-      document.getElementById('allinbetButton').disabled = true;
+    playerBet = playerBalance;
+    playerBalance = 0;
+    updateBalance();
+    document.getElementById('clearbetButton').disabled = false;
+    document.getElementById('allinButton').disabled = true;
   }
 }
 
