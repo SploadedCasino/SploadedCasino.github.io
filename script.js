@@ -67,6 +67,9 @@ function placeBet(amount) {
       playerBalance -= amount;
       updateBalance();
       document.getElementById('clearbetButton').disabled = false;
+      if (playerBalance === 0) {
+        document.getElementById('allinButton').disabled = true;
+      }
     } else {
       showCustomAlert("You stupid brokie 🤡😂");
     }
