@@ -17,15 +17,19 @@ startSound.preload = 'auto';
 function playWinSound() {
   winSound.play();
 }
+
 function playLoseSound() {
   loseSound.play();
 }
+
 function playStartSound() {
   startSound.play();
 }
+
 function playBetSound() {
   betSound.play();
 }
+
 function updateBalance() {
   document.getElementById('playerBalance').innerText = `Balance: $${playerBalance}`;
   document.getElementById('playerBetAmount').innerText = `Bet: $${playerBet}`;
@@ -92,7 +96,6 @@ function allIn() {
   }
 }
 
-
 function showCustomAlert(message) {
   document.getElementById('alertMessage').innerText = message;
   document.getElementById('customAlert').style.display = 'flex';
@@ -106,10 +109,6 @@ function startGame() {
   if (playerBet > 0 && !gameStarted) {
     playStartSound();
     gameStarted = true;
-    canDoubleDown = true;
-    if (playerBalance > 0) {
-      document.getElementById('doubleDownButton').disabled = false;
-    }
     const dealerLabel = document.getElementById('dealerLabel');
     const playerLabel = document.getElementById('playerLabel');
     const message = document.getElementById('message');
@@ -124,8 +123,6 @@ function startGame() {
     playerHand = [drawCard(), drawCard()];
     dealerHand = [drawCard(), drawCard()];
     dealInitialCards();
-    document.getElementById('hitButton').disabled = false;
-    document.getElementById('standButton').disabled = false;
     document.getElementById('startButton').disabled = true;
     document.getElementById('clearbetButton').disabled = true;
     let betButtons = document.querySelectorAll('.placebetButton');
@@ -190,7 +187,6 @@ function getCardName(value) {
   return value.toString();
 }
 
-
 function hit() {
   if (gameStarted) {
     document.getElementById('doubleDownButton').disabled = true;
@@ -212,6 +208,7 @@ function hit() {
     });
   }
 }
+
 function doubleDown() {
   if (canDoubleDown && playerBalance >= playerBet) {
     playerBalance -= playerBet;
@@ -235,6 +232,7 @@ function doubleDown() {
     showCustomAlert("You stupid brokie 🤡😂");
   }
 }
+
 function dealCard(card, player, isHidden = false) {
   return new Promise(resolve => {
     const cardDiv = document.createElement('img');
@@ -259,6 +257,12 @@ async function dealInitialCards() {
   for (let card of playerHand) {
     await dealCard(card, 'player');
   }
+  canDoubleDown = true;
+  if (playerBalance > 0) {
+    document.getElementById('doubleDownButton').disabled = false;
+  }
+  document.getElementById('hitButton').disabled = false;
+  document.getElementById('standButton').disabled = false;
   await dealCard(dealerHand[0], 'dealer', true);
   await dealCard(dealerHand[1], 'dealer');
   checkForBlackjack();
@@ -288,6 +292,7 @@ function stand() {
     endGame();
   }
 }
+
 function calculateTotal(hand) {
   let total = 0;
   let aces = 0;
@@ -376,6 +381,7 @@ function updateHighScore() {
     localStorage.setItem('blackjackHighScore', highScore);
   }
 }
+
 function loadHighScore() {
   const savedHighScore = localStorage.getItem('blackjackHighScore');
   if (savedHighScore) {
@@ -444,7 +450,6 @@ function checkForBankruptcy() {
     document.getElementById('doubleDownButton').disabled = true;
   }
 }
-
 
 function resetBalance() {
   playerBalance = 500;
