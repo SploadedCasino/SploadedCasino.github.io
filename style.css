@@ -32,6 +32,34 @@ header .logo img {
     align-items: center;
 }
 
+.breadcrumbs {
+    font-size: 14px;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 5px;
+    color: white;
+}
+
+.breadcrumbs a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.breadcrumbs a:hover {
+    color: #ffcc00;
+}
+
+.breadcrumbs a::after {
+    content: " > ";
+}
+
+.breadcrumbs a:last-child::after {
+    content: "";
+}
+
 main {
     flex: 1;
     padding-bottom: 5px;
