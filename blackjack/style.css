@@ -13,28 +13,83 @@ body {
   box-sizing: border-box;
 }
 
-header .logo {
-  margin: auto;
-}
-
-header .logo img {
-  width: 300px;
-  cursor: pointer;
-  align-items: center;
-}
-
 header {
-  display: flex;
-  align-items: center;
-  padding: 20px;
-  background-color: #333;
-  color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
+
+.hamburger {
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
+    z-index: 2;
+}
+
+.logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.logo img {
+    width: 300px;
+    cursor: pointer;
+    align-items: center;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.nav-panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #444;
+    transition: left 0.3s ease;
+    z-index: 1;
+    padding-top: 50px;
+}
+
+.nav-panel ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.nav-panel ul li {
+    padding: 15px 0;
+}
+
+.nav-panel ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+}
+
+.nav-panel ul li a:hover {
+    text-decoration: underline;
 }
 
 main {
-  flex: 1;
-  padding-bottom: 5px;
+    flex: 1;
+    padding-bottom: 5px;
 }
 
 .game-selection {
