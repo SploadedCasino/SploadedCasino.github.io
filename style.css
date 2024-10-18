@@ -16,48 +16,75 @@ body {
 header {
     display: flex;
     align-items: center;
+    position: relative;
     padding: 20px;
     background-color: #333;
     color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-header .logo {
-    margin: auto;
+.hamburger {
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
+    z-index: 2;
 }
 
-header .logo img {
+.logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.logo img {
     width: 300px;
     cursor: pointer;
     align-items: center;
 }
 
-.breadcrumbs {
-    font-size: 14px;
-    margin: 20px 0;
-    padding: 10px 20px;
-    background-color: #333;
-    border-radius: 5px;
-    color: white;
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
 }
 
-.breadcrumbs a {
+.nav-panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #444;
+    transition: left 0.3s ease;
+    z-index: 1;
+    padding-top: 50px;
+}
+
+.nav-panel ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.nav-panel ul li {
+    padding: 15px 0;
+}
+
+.nav-panel ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease;
+    display: block;
 }
 
-.breadcrumbs a:hover {
-    color: #ffcc00;
-}
-
-.breadcrumbs a::after {
-    content: " > ";
-}
-
-.breadcrumbs a:last-child::after {
-    content: "";
+.nav-panel ul li a:hover {
+    text-decoration: underline;
 }
 
 main {
