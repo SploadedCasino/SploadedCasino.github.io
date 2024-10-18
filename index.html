@@ -77,38 +77,44 @@
     }
     </script>
 </head>
-<body>
-    <header>
-        <div class="logo">
-            <a href="/"><img src="logo.png" alt="Sploaded Casino Logo - Play Blackjack, Plinko, and Roulette"></a>
-        </div>
-    </header>
-    <main>
-        <nav class="breadcrumbs">
-        <a href="/">Home</a> >
-        <a href="/blackjack/">Blackjack</a>
-        <a href="/plinko/">Plinko</a>
-        <a href="/roulette/">Roulette</a>
-        <a href="/about/">About</a>
+    <body>
+        <header>
+            <div class="hamburger" id="hamburger">
+                &#9776; <!-- This represents the three horizontal lines -->
+            </div>
+            <div class="logo">
+                <a href="/"><img src="logo.png" alt="Sploaded Casino Logo - Play Blackjack, Plinko, and Roulette"></a>
+            </div>
+        </header>
+        <nav id="nav-panel" class="nav-panel">
+            <ul>
+                <li><a href="blackjack/">Blackjack</a></li>
+                <li><a href="plinko/">Plinko</a></li>
+                <li><a href="roulette/">Roulette</a></li>
+                <li><a href="about/">About Us</a></li>
+            </ul>
         </nav>
-      <section class="game-selection">
-          <h2>Select Your Game</h2>
-          <div class="game-wrapper">
-              <div class="game-container">
-                  <a href="blackjack/"><img src="blackjack.avif" alt="Play Blackjack at Sploaded Casino" class="cardss"></a>
-                  <a href="plinko/"><img src="plinko.avif" alt="Play Plinko at Sploaded Casino" class="cardss"></a>
-                  <a href="roulette/"><img src="roulette.avif" alt="Play Roulette at Sploaded Casino" class="cardss"></a>
-              </div>
-          </div>
-      </section>
-    </main>
-    <footer>
-        <p>© 2024 SploadedBoi Casino Games. All rights reserved. (Not Actually)</p>
-        <div>
-            <a href="about/" style="color: white;">About Us</a>
-            <a href="mailto:nicholas.beaudean@students.mot.k12.de.us" style="color: white;">Contact Us!</a>
-            <a href="https://github.com/SploadedCasino/SploadedCasino.github.io" style="color: white;">GitHub Repository</a>
-        </div>
-    </footer>
-</body>
+        <main>
+            <section class="game-selection">
+                <h2>Select Your Game</h2>
+                <div class="game-wrapper">
+                    <div class="game-container">
+                        <a href="blackjack/"><img src="blackjack.avif" alt="Play Blackjack at Sploaded Casino" class="cardss"></a>
+                        <a href="plinko/"><img src="plinko.avif" alt="Play Plinko at Sploaded Casino" class="cardss"></a>
+                        <a href="roulette/"><img src="roulette.avif" alt="Play Roulette at Sploaded Casino" class="cardss"></a>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <p>© 2024 SploadedBoi Casino Games. All rights reserved. (Not Actually)</p>
+            <div>
+                <a href="about/" style="color: white;">About Us</a>
+                <a href="mailto:nicholas.beaudean@students.mot.k12.de.us" style="color: white;">Contact Us!</a>
+                <a href="https://github.com/SploadedCasino/SploadedCasino.github.io" style="color: white;">GitHub Repository</a>
+            </div>
+        </footer>
+        <div id="overlay" style="display: none;"></div>
+        <script src="main.js"></script>
+    </body>
 </html>
