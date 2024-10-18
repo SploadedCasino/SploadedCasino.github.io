@@ -92,6 +92,26 @@ main {
     padding-bottom: 5px;
 }
 
+#titleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#blackjackTitle {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+  font-family: 'Arial', sans-serif;
+}
+
+h1 {
+  font-size: 26px;
+  margin: 10px 0;
+}
+
 .game-selection {
     text-align: center;
     margin: 50px auto;
