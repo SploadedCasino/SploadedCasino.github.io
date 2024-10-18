@@ -24,10 +24,21 @@
 </head>
 <body>
     <header>
-        <div class="logo">
-            <a href="../"><img src="../logo.png" alt="Sploaded Casino Logo"></a>
-        </div>
-    </header>
+            <div class="hamburger" id="hamburger">
+                &#9776;
+            </div>
+            <div class="logo">
+                <a href="/"><img src="logo.png" alt="Sploaded Casino Logo - Play Blackjack, Plinko, and Roulette"></a>
+            </div>
+        </header>
+        <nav id="nav-panel" class="nav-panel">
+            <ul>
+                <li><a href="blackjack/">Blackjack</a></li>
+                <li><a href="plinko/">Plinko</a></li>
+                <li><a href="roulette/">Roulette</a></li>
+                <li><a href="about/">About Us</a></li>
+            </ul>
+        </nav>
     <main>
     <section class="game-selection">
     <div class="table-wrapper">
@@ -102,12 +113,13 @@
             <p id="alertMessage"></p>
         </div>
     </div>
-    <script src="../script.js"></script>
     <footer>
         <p>© 2024 SploadedBoi Casino Games. All rights reserved. (Not Actually)</p>
         <a href="../about/" style="color: white; text-align: padding: 10px; right;">About Us</a></li>
         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=nicholas.beaudean@students.mot.k12.de.us" style="color: white; text-align: right;">Contact Us!</a>
         <a href="https://github.com/SploadedCasino/SploadedCasino.github.io" style="color: white; text-align: right;">Github Repository</a>
     </footer>
+    <div id="overlay" style="display: none;"></div>
+    <script src="../script.js"></script>
 </body>
 </html>
