@@ -1,5 +1,9 @@
 # Patch Notes
 
+## Version 1.1.1 - October 19, 2024
+- Fixed some bugs with the Blackjack.
+- Fixed bugs with the navigation menu.
+
 ## Version 1.1.0 - October 18, 2024
 - Polished release of Blackjack; some bugs regarding betting money were fixed.
 - Added navigation menu.
