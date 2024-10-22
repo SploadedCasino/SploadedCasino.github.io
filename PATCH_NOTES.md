@@ -1,6 +1,6 @@
 # Patch Notes
 
-## Version 1.1.2 - October 21, 2024
+## Version 1.1.2 - October 21 - 22, 2024
 - Fixing search result appearence of the website on google.
 
 ## Version 1.1.1 - October 19, 2024
