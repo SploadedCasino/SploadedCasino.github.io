@@ -1,6 +1,9 @@
 # Patch Notes
 
-## Version 1.1.2 - October 21 - 24, 2024
+## Version 1.1.3 - October 24, 2024
+- Changed Sitemap.xml; added style.
+
+## Version 1.1.2 - October 21 - 23, 2024
 - Fixing search result appearence of the website on google.
 
 ## Version 1.1.1 - October 19, 2024
