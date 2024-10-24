@@ -43,7 +43,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <xsl:for-each select="urlset/url">
+                        <xsl:for-each select="s:urlset/s:url">
                             <tr>
                                 <td><xsl:value-of select="s:loc"/></td>
                                 <td><xsl:value-of select="s:lastmod"/></td>
