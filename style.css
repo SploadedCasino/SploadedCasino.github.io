@@ -16,6 +16,7 @@ body {
 header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: relative;
     padding: 20px;
     background-color: #333;
@@ -27,12 +28,48 @@ header {
     font-size: 30px;
     color: white;
     z-index: 2;
+    position: relative;
+}
+
+.nav-panel {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #444;
+    transition: left 0.3s ease;
+    z-index: 1;
+    padding-top: 50px;
+}
+
+.nav-panel ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.nav-panel ul li {
+    padding: 15px 0;
+}
+
+.nav-panel ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+}
+
+.nav-panel ul li a:hover {
+    text-decoration: underline;
 }
 
 .logo {
-    flex: 1;
-    display: flex;
-    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .logo img {
@@ -116,41 +153,6 @@ button {
 h1 {
   font-size: 26px;
   margin: 10px 0;
-}
-
-.nav-panel {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100%;
-    background-color: #444;
-    transition: left 0.3s ease;
-    z-index: 1;
-    padding-top: 50px;
-}
-
-.nav-panel ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-}
-
-.nav-panel ul li {
-    padding: 15px 0;
-}
-
-.nav-panel ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    display: block;
-}
-
-.nav-panel ul li a:hover {
-    text-decoration: underline;
 }
 
 main {
