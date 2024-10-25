@@ -257,16 +257,17 @@ async function dealInitialCards() {
   for (let card of playerHand) {
     await dealCard(card, 'player');
   }
+  await dealCard(dealerHand[0], 'dealer', true);
+  await dealCard(dealerHand[1], 'dealer');
+  checkForBlackjack();
   canDoubleDown = true;
   if (playerBalance > 0) {
     document.getElementById('doubleDownButton').disabled = false;
   }
   document.getElementById('hitButton').disabled = false;
   document.getElementById('standButton').disabled = false;
-  await dealCard(dealerHand[0], 'dealer', true);
-  await dealCard(dealerHand[1], 'dealer');
-  checkForBlackjack();
 }
+
 
 function stand() {
   if (gameStarted) {
@@ -353,7 +354,7 @@ function endGame() {
     document.getElementById('message').classList.add('fade-out');
     document.getElementById('dealerLabel').classList.add('fade-out');
     document.getElementById('playerLabel').classList.add('fade-out');
-  }, 4000);
+  }, 3000);
   setTimeout(() => {
     playerHand = [];
     dealerHand = [];
@@ -368,7 +369,7 @@ function endGame() {
     let betButtons = document.querySelectorAll('.placebetButton');
     betButtons.forEach(button => button.disabled = false);
     checkForBankruptcy();
-  }, 5000);
+  }, 4000);
   playerBet = 0;
   saveGameState();
   updateBalance();
