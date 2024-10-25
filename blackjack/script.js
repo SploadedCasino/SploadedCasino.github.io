@@ -5,14 +5,45 @@ let dealerHand = [];
 let gameStarted = false;
 let highScore = 1000;
 let deck = [];
-const numberOfDecks = 8;
 let canDoubleDown = false;
+const numberOfDecks = 8;
+const hamburger = document.getElementById('hamburger');
+const navPanel = document.getElementById('nav-panel');
+const overlay = document.getElementById('overlay');
 const winSound = new Audio('sounds/win.mp3');
-winSound.preload = 'auto';
 const loseSound = new Audio('sounds/lose.mp3');
-loseSound.preload = 'auto';
 const startSound = new Audio('sounds/start.mp3');
+winSound.preload = 'auto';
+loseSound.preload = 'auto';
 startSound.preload = 'auto';
+
+hamburger.onclick = function() {
+  if (navPanel.style.left === '0px') {
+      closeNavPanel();
+  } else {
+      openNavPanel();
+  }
+};
+
+overlay.onclick = function() {
+  closeNavPanel();
+};
+
+function openNavPanel() {
+  navPanel.style.display = 'block';
+  setTimeout(() => {
+      navPanel.style.left = '0px';
+      overlay.style.display = 'block';
+  }, 10);
+}
+
+function closeNavPanel() {
+  navPanel.style.left = '-250px';
+  overlay.style.display = 'none';
+  setTimeout(() => {
+      navPanel.style.display = 'none';
+  }, 300);
+}
 
 function playWinSound() {
   winSound.play();
