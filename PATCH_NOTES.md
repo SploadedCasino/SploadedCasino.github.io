@@ -1,4 +1,6 @@
 # Patch Notes
+## Version 1.1.4 - October 25, 2024
+- Fixed some issues.
 
 ## Version 1.1.3 - October 24, 2024
 - Changed Sitemap.xml; added style.
