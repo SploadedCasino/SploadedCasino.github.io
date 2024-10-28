@@ -1,4 +1,8 @@
 # Patch Notes
+
+## Version 1.1.5 - October 28, 2024
+- Still fixing some issues with the Schema data.
+
 ## Version 1.1.4 - October 25, 2024
 - Fixed some issues.
 
