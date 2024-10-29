@@ -1,16 +1,9 @@
 # Patch Notes
 
-## Version 1.1.5 - October 29, 2024
-- Still fixing some issues with the Schema data.
-
-## Version 1.1.4 - October 25, 2024
-- Fixed some issues.
-
-## Version 1.1.3 - October 24, 2024
-- Changed Sitemap.xml; added style.
-
-## Version 1.1.2 - October 21 - 23, 2024
+## Version 1.1.2 - October 21 - 29, 2024
 - Fixing search result appearence of the website on google.
+- Changed Sitemap.xml; added style.
+- Fixed some issues.
 
 ## Version 1.1.1 - October 19, 2024
 - Fixed some bugs with the Blackjack.
