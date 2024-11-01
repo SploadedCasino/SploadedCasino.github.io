@@ -1,13 +1,9 @@
 # Patch Notes
 
-## Version 1.1.2 - October 21 - 29, 2024
-- Fixing search result appearence of the website on google.
-- Changed Sitemap.xml; added style.
-- Fixed some issues.
-
-## Version 1.1.1 - October 19, 2024
+## Version 1.1.1 - October 19 - November 1, 2024
 - Fixed some bugs with the Blackjack.
 - Fixed bugs with the navigation menu.
+- Fixed the search result appearence on google.
 
 ## Version 1.1.0 - October 18, 2024
 - Polished release of Blackjack; some bugs regarding betting money were fixed.
