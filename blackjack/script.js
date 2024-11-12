@@ -222,12 +222,13 @@ function hit() {
   if (gameStarted) {
     document.getElementById('doubleDownButton').disabled = true;
     document.getElementById('hitButton').disabled = true;
+    document.getElementById('standButton').disabled = true;
     playerHand.push(drawCard());
     dealCard(playerHand[playerHand.length - 1], 'player').then(() => {
       const playerTotal = calculateTotal(playerHand);
       setTimeout(() => {
         document.getElementById('hitButton').disabled = false;
-
+        document.getElementById('standButton').disabled = false;
         if (playerTotal > 21) {
           document.getElementById('message').innerText = "You bust, Dealer wins.🤡";
           playLoseSound();
@@ -247,6 +248,7 @@ function doubleDown() {
     updateBalance();
     document.getElementById('doubleDownButton').disabled = true;
     document.getElementById('hitButton').disabled = true;
+    document.getElementById('standButton').disabled = true;
     playerHand.push(drawCard());
     dealCard(playerHand[playerHand.length - 1], 'player').then(() => {
       const playerTotal = calculateTotal(playerHand);

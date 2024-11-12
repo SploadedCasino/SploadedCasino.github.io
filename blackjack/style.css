@@ -96,9 +96,11 @@ main {
 
 .game-selection {
   text-align: center;
-  margin: 50px auto;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
   color: white;
-  padding: 0 30px;
 }
 
 .table-wrapper {
@@ -107,7 +109,6 @@ main {
 
 .table {
   text-align: center;
-  gap: 40px;
   margin: 0 auto;
   max-width: 700px;
   width: 100%;
