@@ -1,5 +1,8 @@
 # Patch Notes
 
+## Version 1.1.2 - March 27, 2025
+- Fixed issues when given blackjack.
+
 ## Version 1.1.1 - October 19 - November 1, 2024
 - Fixed some bugs with the Blackjack.
 - Fixed bugs with the navigation menu.
