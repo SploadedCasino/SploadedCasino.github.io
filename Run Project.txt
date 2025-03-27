@@ -1,0 +1,1 @@
+You can run the project by running (python -m http.server) or (npx serve .)

@@ -242,7 +242,7 @@ function hit() {
 }
 
 function doubleDown() {
-  if (canDoubleDown && playerBalance >= playerBet) {
+  if (canDoubleDown && playerBalance >= 2 * playerBet) {
     playerBalance -= playerBet;
     playerBet *= 2;
     updateBalance();
@@ -293,12 +293,6 @@ async function dealInitialCards() {
   await dealCard(dealerHand[0], 'dealer', true);
   await dealCard(dealerHand[1], 'dealer');
   checkForBlackjack();
-  canDoubleDown = true;
-  if (playerBalance > 0) {
-    document.getElementById('doubleDownButton').disabled = false;
-  }
-  document.getElementById('hitButton').disabled = false;
-  document.getElementById('standButton').disabled = false;
 }
 
 
@@ -368,7 +362,11 @@ function checkForBlackjack() {
     document.getElementById('hitButton').disabled = true;
     document.getElementById('standButton').disabled = true;
     document.getElementById('doubleDownButton').disabled = true;
-    setTimeout(endGame, 1);
+    endGame();
+  } else if (dealerTotal < 21 && playerTotal < 21) {
+    canDoubleDown = true;
+    document.getElementById('hitButton').disabled = false;
+    document.getElementById('standButton').disabled = false;
   }
 }
 
